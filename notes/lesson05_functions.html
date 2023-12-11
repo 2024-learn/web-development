@@ -1,0 +1,45 @@
+<!-- why functions?
+    - reuse code logic: defining the code once and use it many times
+-->
+<script>
+    var post1 = {
+        content: "super-post",
+        likes: 25000,
+        shares: 1000
+    }
+    var post2 = {
+        content: "boring-post",
+        likes: 200,
+        shares: 10
+    }
+    var post3 = {
+        content: "mikes-post",
+        likes: 20607,
+        shares: 1099
+    }
+    var facebookUserOne = {
+        currentWork: {company: 'ex-company', startDate: '2 years ago', position: 'engineer'},
+        email: "john@fb.com",
+        friends: ['johnnie big money', 'cool john', 'big jon', 'john john'],
+        password: "newsecretpass",
+        profileImage: "reference-image",
+        userName: "John",
+        posts: [post1, post2]
+    }
+
+    var facebookUserTwo = {
+        currentWork: {company: 'that-company', startDate: '5 years ago', position: 'senior developer'},
+        email: "mike@fb.com",
+        friends: ['big money mike', 'cool mike', 'big mike', 'mike mike'],
+        password: "secretpwd",
+        profileImage: "reference-image2",
+        userName: "mike",
+        posts: [post3]
+    }
+
+    for (post of facebookUserOne.posts) {
+        post.reactions = post.likes
+        delete post.likes
+    }
+</script>
+<body></body>

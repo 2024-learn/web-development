@@ -1,0 +1,322 @@
+<!-- 
+    use case: when we want to do something to each of the elements of the list/array
+    a loop repeats the same instruction until a condition is reached
+-->
+
+<!-- for ... in loop:
+    used to loop through a list
+    execute something for each elemt in the list
+
+for (element in array) {
+   // do something
+}
+
+keywords: reserved words that are part of the syntax in the programming language
+comments: used to explain code or prevent execution when testing alternative code
+-->
+
+<script>
+    var post1 = {
+        content: "super-post",
+        likes: 25000,
+        shares: 1000
+    }
+    var post2 = {
+        content: "boring-post",
+        likes: 200,
+        shares: 10
+    }
+    var facebookUser = {
+        currentWork: {company: 'ex-company', startDate: '2 years ago', position: 'engineer'},
+        email: "user@fb.com",
+        friends: ['johnnie big money', 'cool john', 'big jon', 'john john'],
+        password: "newsecretpass",
+        profileImage: "reference-image",
+        userName: "John",
+        posts: [post1, post2]
+    }
+    var posts = [post1, post2, {content: "only content"}]
+    for (index in posts) {
+        console.log(posts[index])
+    }
+</script>
+<body>
+
+</body>
+
+
+<!-- for ... of loop:
+    loops through the values of the list
+    gives the whole host object
+    for ... of loop is usually more suitable for arrays
+-->
+
+<script>
+    var post1 = {
+        content: "super-post",
+        likes: 25000,
+        shares: 1000
+    }
+    var post2 = {
+        content: "boring-post",
+        likes: 200,
+        shares: 10
+    }
+    var facebookUser = {
+        currentWork: {company: 'ex-company', startDate: '2 years ago', position: 'engineer'},
+        email: "user@fb.com",
+        friends: ['johnnie big money', 'cool john', 'big jon', 'john john'],
+        password: "newsecretpass",
+        profileImage: "reference-image",
+        userName: "John",
+        posts: [post1, post2]
+    }
+    var posts = [post1, post2]
+    for (post of posts) {
+        console.log(post)
+    }
+</script>
+<body>
+
+</body>
+
+
+
+<!-- change key in an array -->
+<script>
+    var post1 = {
+        content: "super-post",
+        likes: 25000,
+        shares: 1000
+    }
+    var post2 = {
+        content: "boring-post",
+        likes: 200,
+        shares: 10
+    }
+    var facebookUser = {
+        currentWork: {company: 'ex-company', startDate: '2 years ago', position: 'engineer'},
+        email: "user@fb.com",
+        friends: ['johnnie big money', 'cool john', 'big jon', 'john john'],
+        password: "newsecretpass",
+        profileImage: "reference-image",
+        userName: "John",
+        posts: [post1, post2]
+    }
+    var posts = [post1, post2]
+    for (post of posts) {
+        console.log("number of likes on a post " + post.likes)
+        post.reactions = post.likes
+        console.log("number of reactions on a post " + post.reactions)
+        // number of likes on a post 25000
+        // number of reactions on a post 25000
+        // number of likes on a post 200
+        // number of reactions on a post 200
+    }
+    console.log(" loop is done")
+    // loop is done
+    console.log(posts)
+    // {content: 'boring-post', likes: 200, shares: 10, reactions: 200}
+    // {content: 'boring-post', likes: 200, shares: 10, reactions: 200}
+</script>
+<body>
+
+</body>
+
+
+<!-- remove key from array -->
+<script>
+    var post1 = {
+        content: "super-post",
+        likes: 25000,
+        shares: 1000
+    }
+    var post2 = {
+        content: "boring-post",
+        likes: 200,
+        shares: 10
+    }
+    var facebookUser = {
+        currentWork: {company: 'ex-company', startDate: '2 years ago', position: 'engineer'},
+        email: "user@fb.com",
+        friends: ['johnnie big money', 'cool john', 'big jon', 'john john'],
+        password: "newsecretpass",
+        profileImage: "reference-image",
+        userName: "John",
+        posts: [post1, post2]
+    }
+    var posts = [post1, post2]
+    for (post of posts) {
+        post.reactions = post.likes
+        delete post.likes
+    }
+    console.log(" loop is done")
+    // loop is done
+    console.log(posts)
+    // {content: 'boring-post', shares: 10, reactions: 200}
+    // {content: 'boring-post', shares: 10, reactions: 200}
+</script>
+<body></body>
+
+<!-- change and remove key from an array in an object -->
+<script>
+    var post1 = {
+        content: "super-post",
+        likes: 25000,
+        shares: 1000
+    }
+    var post2 = {
+        content: "boring-post",
+        likes: 200,
+        shares: 10
+    }
+    var facebookUser = {
+        currentWork: {company: 'ex-company', startDate: '2 years ago', position: 'engineer'},
+        email: "user@fb.com",
+        friends: ['johnnie big money', 'cool john', 'big jon', 'john john'],
+        password: "newsecretpass",
+        profileImage: "reference-image",
+        userName: "John",
+        posts: [post1, post2]
+    }
+    for (post of facebookUser.posts) {
+        post.reactions = post.likes
+        delete post.likes
+    }
+    console.log(" loop is done")
+    // loop is done
+    console.log(facebookUser.posts)
+    // {content: 'boring-post', shares: 10, reactions: 200}
+    // {content: 'boring-post', shares: 10, reactions: 200}
+</script>
+<body></body>
+
+
+<!-- add empty array; then enumerate it -->
+<!-- add empty array -->
+<script>
+    var post1 = {
+        content: "super-post",
+        likes: 25000,
+        shares: 1000
+    }
+    var post2 = {
+        content: "boring-post",
+        likes: 200,
+        shares: 10
+    }
+    var post3 = {
+        content: "mikes-post",
+        likes: 20607,
+        shares: 1099
+    }
+    var facebookUserOne = {
+        currentWork: {company: 'ex-company', startDate: '2 years ago', position: 'engineer'},
+        email: "john@fb.com",
+        friends: ['johnnie big money', 'cool john', 'big jon', 'john john'],
+        password: "newsecretpass",
+        profileImage: "reference-image",
+        userName: "John",
+        posts: [post1, post2]
+    }
+
+    var facebookUserTwo = {
+        currentWork: {company: 'that-company', startDate: '5 years ago', position: 'senior developer'},
+        email: "mike@fb.com",
+        friends: ['big money mike', 'cool mike', 'big mike', 'mike mike'],
+        password: "secretpwd",
+        profileImage: "reference-image2",
+        userName: "mike",
+        posts: [post3]
+    }
+    
+    for (post of facebookUserOne.posts) {
+        post.reactions = post.likes
+        delete post.likes
+    }
+    console.log(" post loop is done")
+    // loop is done
+    console.log(facebookUserOne.posts)
+    // {content: 'boring-post', shares: 10, reactions: 200}
+    // {content: 'boring-post', shares: 10, reactions: 200}
+
+    var users = [facebookUserOne, facebookUserTwo]
+    for (user of users) {
+        user.interests = []
+    }
+
+    console.log("user loop is done")
+    console.log(users)
+    // {currentWork: {company: 'ex-company', startDate: '2 years ago', position: 'engineer'},
+    // email: "john@fb.com",
+    // friends: ['johnnie big money', 'cool john', 'big jon', 'john john'],
+    // password: "newsecretpass",
+    // profileImage: "reference-image",
+    // userName: "John",
+    // posts: [{content: "super-post", likes: 25000, shares: 1000}, {content: "boring-post", likes: 200, shares: 10}]
+    // interests: []
+
+    // currentWork: {company: 'that-company', startDate: '5 years ago', position: 'senior developer'},
+    // email: "mike@fb.com",
+    // friends: ['big money mike', 'cool mike', 'big mike', 'mike mike'],
+    // password: "secretpwd",
+    // profileImage: "reference-image2",
+    // userName: "mike",
+    // posts: [{content: "mikes-post", likes: 20607, shares: 1099}]
+    // interests: []
+</script>
+<body></body>
+
+<!-- nested loop -->
+<script>
+    var post1 = {
+        content: "super-post",
+        likes: 25000,
+        shares: 1000
+    }
+    var post2 = {
+        content: "boring-post",
+        likes: 200,
+        shares: 10
+    }
+    var post3 = {
+        content: "mikes-post",
+        likes: 20607,
+        shares: 1099
+    }
+    var facebookUserOne = {
+        currentWork: {company: 'ex-company', startDate: '2 years ago', position: 'engineer'},
+        email: "john@fb.com",
+        friends: ['johnnie big money', 'cool john', 'big jon', 'john john'],
+        password: "newsecretpass",
+        profileImage: "reference-image",
+        userName: "John",
+        posts: [post1, post2]
+    }
+
+    var facebookUserTwo = {
+        currentWork: {company: 'that-company', startDate: '5 years ago', position: 'senior developer'},
+        email: "mike@fb.com",
+        friends: ['big money mike', 'cool mike', 'big mike', 'mike mike'],
+        password: "secretpwd",
+        profileImage: "reference-image2",
+        userName: "mike",
+        posts: [post3]
+    }
+    
+    console.log(" post loop is done")
+    console.log(facebookUserOne.posts)
+
+    var users = [facebookUserOne, facebookUserTwo]
+    for (user of users) {
+        user.interests = []
+        for (post of user.posts) {
+            post.reactions = post.likes
+            delete post.likes
+        }
+    }
+
+    console.log("user loop is done")
+    console.log(users)
+</script>
+<body></body>

@@ -28,8 +28,8 @@ false
 
 //object: syntax {key: value, key: value}
 // You can have different data types, and even an object inside an object
-{authorName: "user1", rating: 8, explantion: "great features"}
-{
+userReview = {authorName: "user1", rating: 8, explanation: "great features"}
+productReview = {
     location: "address 1234 place",
     price: "70",
     rating: 5,
@@ -162,7 +162,3 @@ if (todayPrice >= 35 || amazonPrime === true) {
 if (!(todayPrice >= 35 || amazonPrime === true)) {
     shippingCost = 5
 }
-
-
-
-// OBJECTS
