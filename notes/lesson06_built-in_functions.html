@@ -1,0 +1,608 @@
+<!-- 
+    custom function: function that you define
+-->
+<script>
+    function replaceLikesWithReactions(user) {
+        for (post of user.posts) {
+            post.reactions = post.likes
+            delete post.likes
+        }
+        console.log(user)
+    }
+</script>
+<body></body>
+
+<!--  
+    Built-in Functions:
+    - functions built into JS language
+    - common logic that others can re-use in their own software
+-->
+
+<!-- 
+    standalone(global) functions 
+-->
+
+
+<!-- 
+    vs. functions(methods) on objects
+    - methods are actions that can be performed on objects
+    - function defines an object
+    - objectName.methodName()
+-->
+<script>
+    var post1 = {
+        content: "super-post",
+        likes: 25000,
+        shares: 1000
+    }
+    var post2 = {
+        content: "boring-post",
+        likes: 200,
+        shares: 10
+    }
+    var post3 = {
+        content: "mikes-post",
+        likes: 20607,
+        shares: 1099
+    }
+    var facebookUserOne = {
+        currentWork: {company: 'ex-company', startDate: '2 years ago', position: 'engineer'},
+        email: "john@fb.com",
+        friends: ['johnnie big money', 'cool john', 'big jon', 'john john'],
+        password: "newsecretpass",
+        profileImage: "reference-image",
+        userName: "John",
+        posts: [post1, post2],
+        greet: function() {
+            console.log("Hello, John!")
+        }
+    }
+    facebookUserOne.greet() 
+
+    var facebookUserTwo = {
+        currentWork: {company: 'that-company', startDate: '5 years ago', position: 'senior developer'},
+        email: "mike@fb.com",
+        friends: ['big money mike', 'cool mike', 'big mike', 'mike mike'],
+        password: "secretpwd",
+        profileImage: "reference-image2",
+        userName: "mike",
+        posts: [post3]
+    }
+
+    function replaceLikesWithReactions(user) {
+        for (post of user.posts) {
+            post.reactions = post.likes
+            delete post.likes
+        }
+        // console.log(user) --> built-in function
+    }
+    var users = [facebookUserOne, facebookUserTwo]
+    for (user of users) {
+        user.interests = []
+        replaceLikesWithReactions(user)
+    }
+</script>
+<body></body>
+
+
+<!-- Built-in functions on different data types -->
+<script>
+    var post1 = {
+        content: "super-post",
+        likes: 25000,
+        shares: 1000
+    }
+    var post2 = {
+        content: "boring-post",
+        likes: 200,
+        shares: 10
+    }
+    var post3 = {
+        content: "mikes-post",
+        likes: 20607,
+        shares: 1099
+    }
+    var facebookUserOne = {
+        currentWork: {company: 'ex-company', startDate: '2 years ago', position: 'engineer'},
+        email: "john@fb.com",
+        friends: ['johnnie big money', 'cool john', 'big jon', 'john john'],
+        password: "newsecretpass",
+        profileImage: "reference-image",
+        userName: "John",
+        posts: [post1, post2],
+        greet: function() {
+            console.log("Hello, John!")
+        }
+    }
+    facebookUserOne.greet() 
+
+    var facebookUserTwo = {
+        currentWork: {company: 'that-company', startDate: '5 years ago', position: 'senior developer'},
+        email: "mike@fb.com",
+        friends: ['big money mike', 'cool mike', 'big mike', 'mike mike'],
+        password: "secretpwd",
+        profileImage: "reference-image2",
+        userName: "mike",
+        posts: [post3]
+    }
+
+    function replaceLikesWithReactions(user) {
+        for (post of user.posts) {
+            post.reactions = post.likes
+            delete post.likes
+        }
+        // console.log(user) 
+    }
+    var users = [facebookUserOne, facebookUserTwo]
+    for (user of users) {
+        user.interests = []
+        replaceLikesWithReactions(user)
+    }
+
+</script>
+<body></body>
+
+
+<!-- 
+    built-in array methods
+    - there are methods for arrays and methods for strings; the methods for an array do not work on strings
+    -
+-->
+<script>
+    var friends = ["JJ", "juju", "buju banton"]
+    friends.pop()       // remove the last element
+    friends.push("Busta")      // add new element at the end. needs a parameter
+    console.log(friends) 
+</script>
+<body></body>
+
+
+
+<!-- built-in string methods -->
+<!-- 1. replace() 
+    - replace() = replace a specified value with another value
+    - someText.replace("oldValue", "new value")
+    - by default only replaces the first match
+
+ref: https://www.rexegg.com/regex-modifiers.html
+    ref: https://www.w3schools.com/js/js_regexp.asp
+
+    Regular expression: a sequence of characters that forms a search pattern
+    regular expression modifiers:
+    i       perform case-insensitive matching
+    g       perform a globla match (find all matches rather than stopping after the first match)
+    m       perform multiline matching
+
+    regular expression patterns:
+    brackets are used to find a range of characters:
+    [abc]   find any of the characters between the brackets
+    [0-9]   find any digits between the brackets
+    (x|y)   find any of the alternatives separated with |
+
+    metacharacters are characters with a special meaning:
+    \d      find a digit
+    \s      find a whitespace character
+    \b      find a match at the beginning of a word like this: \bWORD, or at the end of a word like this: WORD\b
+    \uxxx   find the unicode character specified by the hexadecimal number xxx
+
+    quantifiers define quantities:
+    n+      match any string that contains at least one n
+    n*      matches any string that contains zero or more occurences of n
+    n?      matches any string that contains zero or one occurences of n
+ -->
+<script>
+    var text = "user John - active user since 2009. John has 30 posts. John last changed his passowrd 1 mo. ago."
+    text.replace("John", "MO")
+    //'user MO - active user since 2009. John has 30 posts. John last changed his passowrd 1 mo. ago.'
+
+    text.replace(/John/g, "Mo")
+    // 'user Mo - active user since 2009. Mo has 30 posts. Mo last changed his passowrd 1 mo. ago.'
+
+    var fullName = "Suzie Homemaker"
+
+</script>
+<body></body>
+
+
+
+<!-- 
+    2. split()
+    - splits a string into an array of substrings
+    - to split on the white space: \s. eg. /\s/
+-->
+<script>
+    var fullName = "Suzie Homemaker"
+    fullName.split(/\s/)
+    fullName.split(/\s+/)
+    // ['Suzie', 'Homemaker']
+
+    var fullName = "Suzie Regular Homemaker"
+    fullName.split(/\s+/)
+    // ['Suzie', 'Regular', 'Homemaker']
+</script>
+<body></body>
+
+
+<!--
+    transform names into objects.
+    - split
+    - transform new names into objects. eg.
+    var fullNames = ["anna smith", "josephine baker", "suzie q."]
+    var fullNamesObjects = [{firstName: " Anna", lastName: "smith"}, {firstName: " josephine", lastName: "baker"}, {}...]
+-->
+<script>
+    var fullNames = ["anna smith", "josephine baker", "suzie q. homemaker"]
+    var firstLastNames = []
+    for (fullName of fullNames) {
+        var names = fullName.split(/\s+/)
+        var splitNames = {
+            firstName: names[0],
+            // lastName: names[1] (if a person has three or more names, like suzie, this will result in the middle name being the last name which would be an error, hence the need to use name[name.length-1])
+                // {firstName: 'anna', lastName: 'smith'}
+                // {firstName: 'josephine', lastName: 'baker'}
+                // {firstName: 'suzie', lastName: 'q.'}
+            lastName: names[names.length-1]
+                // {firstName: 'anna', lastName: 'smith'}
+                // {firstName: 'josephine', lastName: 'baker'}
+                // {firstName: 'suzie', lastName: 'homemaker'}
+        }
+        firstLastNames.push(splitNames)
+    }
+    console.log(firstLastNames)
+</script>
+<body></body>
+
+
+<!--
+    Age exercise:
+    - calculate the user's age based on birthdate
+    - add the age to each user's object
+    Date object: 
+    - you can use the Date object and its methods to work with dates and times
+    - it's not a real built-in data type of JS
+    - it initializes a new object that is today's date
+-->
+<script>
+    var post1 = {
+        content: "super-post",
+        likes: 25000,
+        shares: 1000
+    }
+    var post2 = {
+        content: "boring-post",
+        likes: 200,
+        shares: 10
+    }
+    var post3 = {
+        content: "mikes-post",
+        likes: 20607,
+        shares: 1099
+    }
+    var facebookUserOne = {
+        currentWork: {company: 'ex-company', startDate: '2 years ago', position: 'engineer'},
+        email: "john@fb.com",
+        friends: ['johnnie big money', 'cool john', 'big jon', 'john john'],
+        password: "newsecretpass",
+        profileImage: "reference-image",
+        userName: "John",
+        posts: [post1, post2],
+        birthDate: "1996/08/18"
+       
+    }
+    var facebookUserTwo = {
+        currentWork: {company: 'that-company', startDate: '5 years ago', position: 'senior developer'},
+        email: "mike@fb.com",
+        friends: ['big money mike', 'cool mike', 'big mike', 'mike mike'],
+        password: "secretpwd",
+        profileImage: "reference-image2",
+        userName: "mike",
+        posts: [post3],
+        birthDate: "2003/05/26"
+    }
+
+    function getAge(userBirthDate) {
+        var today = new Date()
+        var birthDate = new Date(userBirthDate) // will transform today's date to birthdate format
+        console.log("today:", today)
+        console.log("birthdate:", birthDate)
+            // today: Tue Dec 12 2023 12:46:40 GMT-0600 (Central Standard Time)
+            // birthdate: Mon May 26 2003 00:00:00 GMT-0500 (Central Daylight Time)
+        console.log(today.getDate())
+            // 12 (day of the month)
+    }
+    getAge("2003/05/26")
+</script>
+<body></body>
+<!--
+    - number represetation of the days of the week: 0(Sunday) to 6(Saturday)
+    - number represetation of the month: 0(January) to 11(December)
+-->
+
+<!-- calculate the age -->
+<script>
+    var post1 = {
+        content: "super-post",
+        likes: 25000,
+        shares: 1000
+    }
+    var post2 = {
+        content: "boring-post",
+        likes: 200,
+        shares: 10
+    }
+    var post3 = {
+        content: "mikes-post",
+        likes: 20607,
+        shares: 1099
+    }
+    var facebookUserOne = {
+        currentWork: {company: 'ex-company', startDate: '2 years ago', position: 'engineer'},
+        email: "john@fb.com",
+        friends: ['johnnie big money', 'cool john', 'big jon', 'john john'],
+        password: "newsecretpass",
+        profileImage: "reference-image",
+        userName: "John",
+        posts: [post1, post2],
+        birthDate: "1996/08/18"
+       
+    }
+    var facebookUserTwo = {
+        currentWork: {company: 'that-company', startDate: '5 years ago', position: 'senior developer'},
+        email: "mike@fb.com",
+        friends: ['big money mike', 'cool mike', 'big mike', 'mike mike'],
+        password: "secretpwd",
+        profileImage: "reference-image2",
+        userName: "mike",
+        posts: [post3],
+        birthDate: "2003/05/26"
+    }
+
+    function getAge(userBirthDate) {
+        var today = new Date()
+        var birthDate = new Date(userBirthDate) // will transform today's date to birthdate format
+        console.log("today:", today)
+        console.log("birthdate:", birthDate)
+        console.log("month:", today.getMonth())
+
+        // calculate the years:
+        var age = today.getFullYear() - birthDate.getFullYear()
+        
+
+        // accounting for if the birthday has not yet happened in the year, then the user will not yet be the full age, so minus 1
+             //today.getMonth() < birthDate.getMonth()
+        if (today.getMonth() < birthDate.getMonth()) {
+            // age = age - 1 (also written as age--)
+            age--
+        }
+        
+        if (today.getMonth() === birthDate.getMonth()) {
+            if (today.getDate() < birthDate.getDate()){
+                age--
+            }
+        }
+        console.log("age:", age)
+    }
+    getAge("2003/05/26")
+</script>
+<body></body>
+
+<!-- optimize the code -->
+<script>
+    var post1 = {
+        content: "super-post",
+        likes: 25000,
+        shares: 1000
+    }
+    var post2 = {
+        content: "boring-post",
+        likes: 200,
+        shares: 10
+    }
+    var post3 = {
+        content: "mikes-post",
+        likes: 20607,
+        shares: 1099
+    }
+    var facebookUserOne = {
+        currentWork: {company: 'ex-company', startDate: '2 years ago', position: 'engineer'},
+        email: "john@fb.com",
+        friends: ['johnnie big money', 'cool john', 'big jon', 'john john'],
+        password: "newsecretpass",
+        profileImage: "reference-image",
+        userName: "John",
+        posts: [post1, post2],
+        birthDate: "1996/08/18"
+       
+    }
+    var facebookUserTwo = {
+        currentWork: {company: 'that-company', startDate: '5 years ago', position: 'senior developer'},
+        email: "mike@fb.com",
+        friends: ['big money mike', 'cool mike', 'big mike', 'mike mike'],
+        password: "secretpwd",
+        profileImage: "reference-image2",
+        userName: "mike",
+        posts: [post3],
+        birthDate: "2003/05/26"
+    }
+
+    function getAge(userBirthDate) {
+        var today = new Date()
+        var birthDate = new Date(userBirthDate)
+        console.log("today:", today)
+        console.log("birthdate:", birthDate)
+        console.log("month:", today.getMonth())
+
+        // calculate the years:
+        var age = today.getFullYear() - birthDate.getFullYear()
+        if (today.getMonth() < birthDate.getMonth()) {
+            // age = age - 1 (also written as age--)
+            age--
+        }
+        // check if they have the same birthmonth
+        if (today.getMonth() === birthDate.getMonth()) {
+            if (today.getDate() < birthDate.getDate()){
+                age--
+            }
+        }
+
+        // optimize the code:
+        // using &&
+        if (today.getMonth() === birthDate.getMonth() 
+            && today.getDate() < birthDate.getDate()) {
+                age--
+        }
+        // optimize the code:
+        // using a variable
+        var sameMonth = today.getMonth() === birthDate.getMonth()
+        if (sameMonth && today.getDate() < birthDate.getDate()) {
+            age--
+        }
+        console.log("age:", age)
+    }
+    getAge("2003/12/26")
+</script>
+<body></body>
+
+<script>
+    var post1 = {
+        content: "super-post",
+        likes: 25000,
+        shares: 1000
+    }
+    var post2 = {
+        content: "boring-post",
+        likes: 200,
+        shares: 10
+    }
+    var post3 = {
+        content: "mikes-post",
+        likes: 20607,
+        shares: 1099
+    }
+    var facebookUserOne = {
+        currentWork: {company: 'ex-company', startDate: '2 years ago', position: 'engineer'},
+        email: "john@fb.com",
+        friends: ['johnnie big money', 'cool john', 'big jon', 'john john'],
+        password: "newsecretpass",
+        profileImage: "reference-image",
+        userName: "John",
+        posts: [post1, post2],
+        birthDate: "1996/08/18"
+       
+    }
+    var facebookUserTwo = {
+        currentWork: {company: 'that-company', startDate: '5 years ago', position: 'senior developer'},
+        email: "mike@fb.com",
+        friends: ['big money mike', 'cool mike', 'big mike', 'mike mike'],
+        password: "secretpwd",
+        profileImage: "reference-image2",
+        userName: "mike",
+        posts: [post3],
+        birthDate: "2003/05/26"
+    }
+
+    function getAge(userBirthDate) {
+        var today = new Date()
+        var birthDate = new Date(userBirthDate)
+        console.log("today:", today)
+        console.log("birthdate:", birthDate)
+        console.log("month:", today.getMonth())
+
+        // calculate the years:
+        var age = today.getFullYear() - birthDate.getFullYear()
+        if (today.getMonth() < birthDate.getMonth()
+            || (today.getMonth() === birthDate.getMonth() 
+            && today.getDate() < birthDate.getDate())) {
+            age--
+        }
+        console.log("age:", age)
+    }
+    getAge("2003/12/26")
+</script>
+<body></body>
+
+
+<!--
+    store in variables and make the code work for all users:
+
+    return statement: 
+    - you can return a value from the function by using the retun keyword
+    - when JS reached a return statement, the function will stop executing; hence, 
+        it has to be the last line of code/statement in a function.
+    -
+-->
+<script>
+    var post1 = {
+        content: "super-post",
+        likes: 25000,
+        shares: 1000
+    }
+    var post2 = {
+        content: "boring-post",
+        likes: 200,
+        shares: 10
+    }
+    var post3 = {
+        content: "mikes-post",
+        likes: 20607,
+        shares: 1099
+    }
+    var facebookUserOne = {
+        currentWork: {company: 'ex-company', startDate: '2 years ago', position: 'engineer'},
+        email: "john@fb.com",
+        friends: ['johnnie big money', 'cool john', 'big jon', 'john john'],
+        password: "newsecretpass",
+        profileImage: "reference-image",
+        userName: "John",
+        posts: [post1, post2],
+        birthDate: "1996/08/18"
+       
+    }
+    var facebookUserTwo = {
+        currentWork: {company: 'that-company', startDate: '5 years ago', position: 'senior developer'},
+        email: "mike@fb.com",
+        friends: ['big money mike', 'cool mike', 'big mike', 'mike mike'],
+        password: "secretpwd",
+        profileImage: "reference-image2",
+        userName: "mike",
+        posts: [post3],
+        birthDate: "2003/05/26"
+    }
+    function getAge(userBirthDate) {
+        var today = new Date()
+        var birthDate = new Date(userBirthDate)
+
+        // calculate the years:
+        var age = today.getFullYear() - birthDate.getFullYear()
+        var birthdayMonthinFuture = today.getMonth() < birthDate.getMonth()
+        var sameMonthDateFuture = today.getMonth() === birthDate.getMonth() 
+            && today.getDate() < birthDate.getDate()
+            
+        if (birthdayMonthinFuture || sameMonthDateFuture){
+            age--
+        }
+        console.log("age:", age)
+        return age
+        // console.log("age:", age) --> this line of code will not execute, as it is after the return function
+    }
+    //  getAge(facebookUserOne.birthDate)
+    //  getAge(facebookUserTwo.birthDate)
+
+    //use a loop
+    var users = [facebookUserOne, facebookUserTwo]
+    for (user of users) {
+        user.age = getAge(user.birthDate)
+    }
+    console.log(users)
+</script>
+<body></body>
+
+<!-- 
+    shortcuts of increasing/decreasing by one and assigning back to the variable:
+    
+    age = age + 1
+    age++
+
+    age = age - 1 
+    age--
+-->
