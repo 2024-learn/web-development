@@ -38,7 +38,6 @@ delete facebookUser.about
 facebookUser
   // {userName: 'John', password: 'newsecretpass', email: 'user@fb.com', profileImage: 'reference-image'}
 
-
 // ADDING AN ARRAY TO AN OBJECT
 facebookUser.friends = ['johnnie big money', 'cool john', 'big jon', 'john john']
 facebookUser
