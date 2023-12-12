@@ -44,5 +44,3 @@ friends[friends.length] = "lil johny"
 // removing the last item from an array
 friends.pop()
 // friends: ['johnnie big money', 'cool john', 'big jon', 'john john', 'lil jon']
-
-
