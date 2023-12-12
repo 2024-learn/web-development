@@ -1,5 +1,64 @@
 <!-- why functions?
     - reuse code logic: defining the code once and use it many times
+    - a function is a block of code designed to perform a particular task, that can be executed multiple times
+    - function is define with the "function" keyword; followed by a name.
+    - a function name should describe what the code block it encapsulate does
+    - function body is the code to be executed that is placed inside the function block inside the curly brackets
+    - a function has to be called(function invokation)
+    - function invokation: a bock of code is only executed when it is called(invoked)
+-->
+
+<script>
+    var post1 = {
+        content: "super-post",
+        likes: 25000,
+        shares: 1000
+    }
+    var post2 = {
+        content: "boring-post",
+        likes: 200,
+        shares: 10
+    }
+    var post3 = {
+        content: "mikes-post",
+        likes: 20607,
+        shares: 1099
+    }
+    var facebookUserOne = {
+        currentWork: {company: 'ex-company', startDate: '2 years ago', position: 'engineer'},
+        email: "john@fb.com",
+        friends: ['johnnie big money', 'cool john', 'big jon', 'john john'],
+        password: "newsecretpass",
+        profileImage: "reference-image",
+        userName: "John",
+        posts: [post1, post2]
+    }
+
+    var facebookUserTwo = {
+        currentWork: {company: 'that-company', startDate: '5 years ago', position: 'senior developer'},
+        email: "mike@fb.com",
+        friends: ['big money mike', 'cool mike', 'big mike', 'mike mike'],
+        password: "secretpwd",
+        profileImage: "reference-image2",
+        userName: "mike",
+        posts: [post3]
+    }
+
+    function replaceLikesWithReactions() {
+        for (post of facebookUserOne.posts) {
+            post.reactions = post.likes
+            delete post.likes
+        }
+        console.log(facebookUserOne)
+    }
+    replaceLikesWithReactions()
+</script>
+<body></body>
+
+
+<!-- 
+    function parameters:
+    - information can be passed into functions as parameters
 -->
 <script>
     var post1 = {
@@ -37,9 +96,71 @@
         posts: [post3]
     }
 
-    for (post of facebookUserOne.posts) {
-        post.reactions = post.likes
-        delete post.likes
+    function replaceLikesWithReactions(user) {
+        for (post of user.posts) {
+            post.reactions = post.likes
+            delete post.likes
+        }
+        console.log(user)
+    }
+    replaceLikesWithReactions(facebookUserOne)
+    replaceLikesWithReactions(facebookUserTwo)
+</script>
+<body></body>
+
+<!-- 
+    functions canhave multiple parameters but it is not recommendd to have too many parameters, e.g. not more than 4
+-->
+
+
+<!-- use a function call within for ... loop -->
+<script>
+    var post1 = {
+        content: "super-post",
+        likes: 25000,
+        shares: 1000
+    }
+    var post2 = {
+        content: "boring-post",
+        likes: 200,
+        shares: 10
+    }
+    var post3 = {
+        content: "mikes-post",
+        likes: 20607,
+        shares: 1099
+    }
+    var facebookUserOne = {
+        currentWork: {company: 'ex-company', startDate: '2 years ago', position: 'engineer'},
+        email: "john@fb.com",
+        friends: ['johnnie big money', 'cool john', 'big jon', 'john john'],
+        password: "newsecretpass",
+        profileImage: "reference-image",
+        userName: "John",
+        posts: [post1, post2]
+    }
+
+    var facebookUserTwo = {
+        currentWork: {company: 'that-company', startDate: '5 years ago', position: 'senior developer'},
+        email: "mike@fb.com",
+        friends: ['big money mike', 'cool mike', 'big mike', 'mike mike'],
+        password: "secretpwd",
+        profileImage: "reference-image2",
+        userName: "mike",
+        posts: [post3]
+    }
+
+    function replaceLikesWithReactions(user) {
+        for (post of user.posts) {
+            post.reactions = post.likes
+            delete post.likes
+        }
+        console.log(user)
+    }
+    var users = [facebookUserOne, facebookUserTwo]
+    for (user of users) {
+        user.interests = []
+        replaceLikesWithReactions(user)
     }
 </script>
 <body></body>
