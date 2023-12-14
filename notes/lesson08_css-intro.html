@@ -6,46 +6,232 @@
 <!-- 
     <style> element
     - used to define style (CSS) information for a document
+    How it works:
+    Which element you want to style         How to style it
+    - div elements                          - Should have this width
+    - h1 elements                           - Should have this color and size
     
+    CSS Syntax
+    - p = the selector: points to the HTML element you want to style
+    - the declaration block: containing one or more style declarations, that should be applied on the HTML element(s)
+    - each declaration includes a CSS property name and value: color is a property, grey is the property value
+
+    Border property
+    - shorthand syntax for: border width, border-style, border-color
+        - border: 1px solid black;
+
+    Margin property
+    - used to create space around the elements; outside of any defined borders
+    - margin can also be set individually: margin-left, margin-right, margin-top, margin-bottom. 
+        - Done clockwise from top (top, right, bottom, left)
+        - margin: 10px 5px 10px, 5px;
+        - margin: 5px
+        - margin: 10px 5px
+
+    id selector:
+    - #logo-img {width: 300px;}
+    - instead of globally changing all values of an element, you can adjust the elements individually with an id attribute.
+    - uses the id attribute of an HTML element to sepect a specific element
+    - Hash (#) character is used to select element by id
+    - note: No two id elements should have the same id
+
+    class selector:
+    - Uses the class attribute of an HTML element to select HTML elements
+    - Dot(.) character is used to select elements by class
+
 -->
 
 <body>
-    <div>
-        <img src="https://icons-for-free.com/iconfiles/png/256/part+1+p-1320568343314317876.png" />
-        <!-- <b>Logo</b> -->
-        <!-- <b>Website Name</b> -->
-        <input type="text" placeholder="Search...">
+    <div id="header">
+        <div id="log-search-container">
+            <img id="logo-img" src="https://icons-for-free.com/iconfiles/png/256/part+1+p-1320568343314317876.png" />
+            <input type="text" placeholder="Search...">
+        </div>
+
         <button>login</button>   
     </div>
 
-    <div>
-        <div>
-            <h1> Article Title</h1>
-            <h3>short info on the article</h3>
-            <p><i>Author: Phyllis L.</i></p>
-            <p><i>Date: 12/13/2023</i></p>
+    <div id="main-section-container">
+        <div id="article-section">
+            <img id="header-img" src="https://media.istockphoto.com/id/1438577807/vector/devops-icon-software-development-dev-and-it-operations-ops-loop-eight-logo-for-software.jpg?s=612x612&w=0&k=20&c=sFy0wjWXUtabGUlpZpdFaZ_Gsu7FK-9ubUvBmjfcy_k=">
+            <div>
+                <h1> Article Title: Why DevOps?</h1>
+                <h3>short info on the article</h3>
+                <p class="article-metadata"><i>Author: Phyllis L.</i></p>
+                <p class="article-metadata"><i>Posted on: 12/13/2023</i></p>
+            </div>
+            <div>
+               <p>paragraph 1</p>
+                <p>paragraph 2</p>
+
+                <h4>Section header </h4>
+                <p>paragraph 1</p>
+                list of things you should do
+                <ul>
+                    <li>item 1</li>
+                    <li>item 2</li>
+                    <li>item 3</li>
+                    <li>item 4</li>  
+                </ul>
+            </div>
         </div>
-        <div>
-            <img src="https://media.istockphoto.com/id/1438577807/vector/devops-icon-software-development-dev-and-it-operations-ops-loop-eight-logo-for-software.jpg?s=612x612&w=0&k=20&c=sFy0wjWXUtabGUlpZpdFaZ_Gsu7FK-9ubUvBmjfcy_k=">
-            <p>paragraph 1</p>
-            <p>paragraph 2</p>
-            <h4>Section header </h4>
-            <p>paragraph 1</p>
-            list of things you should do
-            <ul>
-                <li>item 1</li>
-                <li>item 2</li>
-                <li>item 3</li>
-                <li>item 4</li>  
-            </ul>
-        </div> 
+
+        <div id="side-section">
+            <div>
+                <h2>Side Section 1</h2>
+                <h3>Side article title</h3>
+                <h4>Short Description</h4>
+                <a href="https://www.linkedin.com/in/phyllislikimani">Connect With Me</a>
+            </div>
+            <div>
+                <h2>Side Section 2</h2>
+                <h3>Another article title</h3>
+                <h4>short info</h4>
+                <p><a href="https://techworld-with-nana.teachable.com/">Learn DevOps with Nana Janashia</a></p>
+                <p><a href="https://kodekloud.com/learning-path/kubernetes-administrator/">Learn CKA/D with Mumshad Mannambeth</a></p>
+            </div>
+        </div>
+
     </div>
-        
+
     <div>
-        <h2>Side Section</h2>
-        <h3>Another article title</h3>
-        <h4>Another article short info</h4>
-        <a href="https://www.linkedin.com/in/phyllislikimani">Click here to get to other link</a>
+        <p>My footer</p>
     </div>
 
 </body>
+<style>
+    p {
+        color: green;
+    }
+    a {
+        color: blue;
+        font-size: 16px;
+    }
+    div {
+        border: 1px solid black;
+        margin: 5px;
+    }
+    #logo-img {
+        width: 30px;
+    }
+    #header-img {
+        width: 100%;
+    }
+    .article-metadata {
+        color: gray;
+    }
+    #main-section-container{
+        display: flex;
+        flex-direction: row;
+        width: 80%;
+        margin: auto;
+    }
+    #header {
+        display: flex;
+        justify-content: space-between;
+    }
+    #logo-search-container {
+        display: flex;
+    }
+    #header input{
+        width: 250px;
+        margin-left: 10px;
+    }
+    #article-section{
+        width: 70%;
+    }
+    #side-section {
+        width: 30%;
+    }
+</style>
+
+<!-- 
+    Website Layout
+    - there are many different layouts, but the following structure is very common:
+    - Header, Navigation bar(about, links to other main pages, etc), Aside, main section/content, footer
+
+    how to style with CSS
+    - using float, width and other positioning
+    flexbox layout:
+        - you work with a flex cotainer and flex items
+        - makes it easier to design flexible responsive designs
+    grid layout:
+        - grid-based layout system, with rows and columns
+        - also makes it easier to design flexible web pages
+
+    parent element(container)
+    - this div should become a flexible container
+    flex items(child elements)
+    - define the flex-direction
+
+    Different versions of Flexbox
+    - like any language, CSS is developed and improved by its maintainers
+        - display: box; a version of 2009
+        - display: flexbox; a version of 2011
+        - display: flex: actual version
+    - the value was changed when a new specification was released
+    - flex is the latest one
+
+    - default layout is rows
+        flex-direction: row;
+    - to define in columns: flex-direction: column;
+    
+    justify-content attribute
+    - with this you can align the flex ittems horizontally
+
+    Attributed for parent and child containers
+    Attributes for the parent container
+    The flex container properties are:
+    - flex-direction
+    - flex-wrap
+    - flex-flow
+    - justiy-content
+    - align-items
+    - align content
+
+    Attributes for the child container
+    The flex container properties are:
+    - order
+    - flex-grow
+    - flex-shrink
+    - flex-basis
+    - flex
+    - align-self
+
+    flex-grow attribute:
+    - defines how much space it should take relative to the rest of the flex items/child elements
+    - value is a number. Default is 0
+    - example: 1, 1, 5
+        - 3rd item "grows" five times faster than the other flex items
+
+    CSS has several different units for expressing length
+    - absolute units:
+        - most important: px
+        - fixed, meaning not responsive to screen size changes
+        - pixels:
+            #article-section{
+                width: 1200px;
+            }
+            #side-section{
+                width: 400px;
+            }
+    - Relative units:
+        - most important one: %
+        - more dynamic
+        - oercentage unit: it is relative to the parent container
+        - ratio:
+            #article-section{
+                flex-grow: 2;
+            }
+            #side-section {
+                flex-grow: 1;
+            }
+    
+    Responsive web design:
+    - the goal is to make web pages render well on a variety of devices and window or screen sizes
+    - when a website is responsive, it means that it automatically adjusts for different screen sizes
+
+    The auto value:
+    - used to center the element within its container
+    - the element takes up the specified width, and the remaining space will be split equally between the left and right margins
+-->
