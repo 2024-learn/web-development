@@ -1,0 +1,143 @@
+<!--
+    <head> tag
+    - a container for metadata about the website
+    - is not displayed on the website
+
+    <title> element:
+    - Defines a title name for your webpage
+    - shown in the browser's title bar or when added to favorites
+    - It is very important for search engine optimization (SEO)
+    - use desriptive title, not just a list of words
+
+    <style> and <link> element:
+    - It makes more sense to have the style which should be in the head tag in an external file
+    Benefits of an external CSS file:
+    - better overview
+    - external CSS files could be reused for different HTML pages, in case of same styling
+    - external CSS files can be cached by the browser which increases performance of your website
+
+    <link> element
+    - used to define a link to an external source
+    - rel = required
+        - specifies the relation of a linked resource
+    - href = required
+        - specifies the location of the linked document
+
+    linking stylesheets
+    - can be our own stylesheet
+
+    bootstrap CSS: ref- https://getbootstrap.com
+    - a free CSS framework
+    - contains HTML, CSS, JS- based design templates which you can use in your website
+
+    favicon: ref- https://realfavicongenerator.net
+    - short for "favorite icon"
+    - it is a small 16*16 pixel icon
+    - an icon associated with a particular website used in web browsers
+
+    type attribute
+    - with it you define the media type of the linked document/resource
+    - if you dont specify the attribute, the browser will look at the rel attribute to guess the correct type
+    - e.g. rel="stylesheet", browser will assume type="text/css"
+    
+    <meta> element: ref- https://w3schools.com/html/html_head.asp
+    - defines metadata about an HTML document
+    - not displayed on the page, but machine parsable
+    - keywords: used by search engines
+
+    HTML root element
+    - the root element, holding all the content of a HTML document
+    - tip: include the lang attribute to define the language of your web page (for search engine)
+
+    <!DOCTYPE>
+    - all HTML documents must start with it
+    - It tells the browser that it is a HTML document including which HTML version
+    version             Year
+    HTML                1991
+    HTML+               1993
+    HTML 2.0            1995
+    HTML 3.2            1997
+    HTML 4.01           1999
+    HTML5               2012
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            DevOps Roadmap - 2024
+        </title>
+        <link rel="stylesheet" href="lesson09_style.css">       <!-- path in relation to the html file-->
+        <!--
+        <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
+        <link rel="icon" type="image/png" href="favicon/favicon.png">
+        -->
+        <link rel="apple-touch-icon" sizes="180x180" href="myfavicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="myfavicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="myfavicon/favicon-16x16.png">
+        <link rel="manifest" href="myfavicon/site.webmanifest">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
+
+        <meta name="keywords" content="devops, learn devops, devops roadmap for beginners, engineering">
+        <meta name="description" content="Tech articles for DevOps projects">
+    </head>
+    <body>
+        <div id="header-wrapper">
+            <div id="header">
+                <div id="log-search-container">
+                    <img id="logo-img" src="https://icons-for-free.com/iconfiles/png/256/part+1+p-1320568343314317876.png" />
+                    <input type="text" placeholder="Search...">
+                </div>
+                <button>Log in</button>   
+            </div>
+        </div>
+        
+        <div id="main-section-container">
+            <div id="article-section">
+                <img id="header-img" src="https://media.istockphoto.com/id/1438577807/vector/devops-icon-software-development-dev-and-it-operations-ops-loop-eight-logo-for-software.jpg?s=612x612&w=0&k=20&c=sFy0wjWXUtabGUlpZpdFaZ_Gsu7FK-9ubUvBmjfcy_k=">
+                <div>
+                    <h1> DevOps Roadmap</h1>
+                    <h3>short info on the article</h3>
+                    <p class="article-metadata"><i>Author: Phyllis L.</i></p>
+                    <p class="article-metadata"><i>Posted on: 12/13/2023</i></p>
+                </div>
+                <div>
+                <p>paragraph 1</p>
+                    <p>paragraph 2</p>
+
+                    <h4>Section header </h4>
+                    <p>paragraph 1</p>
+                    list of things you should do
+                    <ul>
+                        <li>item 1</li>
+                        <li>item 2</li>
+                        <li>item 3</li>
+                        <li>item 4</li>  
+                    </ul>
+                </div>
+            </div>
+
+            <div id="side-section">
+                <div>
+                    <h2>Side Section 1</h2>
+                    <h3>Side article title</h3>
+                    <h4>Short Description</h4>
+                    <a href="https://www.linkedin.com/in/phyllislikimani">Connect With Me</a>
+                </div>
+                <div>
+                    <h2>Side Section 2</h2>
+                    <h3>Another article title</h3>
+                    <h4>short info</h4>
+                    <p><a href="https://techworld-with-nana.teachable.com/">Learn DevOps with Nana Janashia</a></p>
+                    <p><a href="https://kodekloud.com/learning-path/kubernetes-administrator/">Learn CKA/D with Mumshad Mannambeth</a></p>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="footer">
+            <p>This is my footer</p>
+        </div>
+    </body>
+</html>
