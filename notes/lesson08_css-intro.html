@@ -19,6 +19,10 @@
     Border property
     - shorthand syntax for: border width, border-style, border-color
         - border: 1px solid black;
+        div {
+            border: 1px solid black;
+            margin: 5px;
+        }
 
     Margin property
     - used to create space around the elements; outside of any defined borders
@@ -42,17 +46,19 @@
 -->
 
 <body>
-    <div id="header">
-        <div id="log-search-container">
-            <img id="logo-img" src="https://icons-for-free.com/iconfiles/png/256/part+1+p-1320568343314317876.png" />
-            <input type="text" placeholder="Search...">
-        </div>
-
-        <button>login</button>   
+    <div id="header-wrapper">
+        <div id="header">       <!-- <header> -->
+            <div id="log-search-container">
+                <img id="logo-img" src="https://icons-for-free.com/iconfiles/png/256/part+1+p-1320568343314317876.png" />
+                <input type="text" placeholder="Search...">
+            </div>
+            <button>Log in</button>   
+        </div> <!-- </header> -->
     </div>
+    
 
     <div id="main-section-container">
-        <div id="article-section">
+        <div id="article-section"> <!-- <article> -->
             <img id="header-img" src="https://media.istockphoto.com/id/1438577807/vector/devops-icon-software-development-dev-and-it-operations-ops-loop-eight-logo-for-software.jpg?s=612x612&w=0&k=20&c=sFy0wjWXUtabGUlpZpdFaZ_Gsu7FK-9ubUvBmjfcy_k=">
             <div>
                 <h1> Article Title: Why DevOps?</h1>
@@ -74,9 +80,9 @@
                     <li>item 4</li>  
                 </ul>
             </div>
-        </div>
+        </div> <!-- </article> -->
 
-        <div id="side-section">
+        <div id="side-section"> <!-- <aside> -->
             <div>
                 <h2>Side Section 1</h2>
                 <h3>Side article title</h3>
@@ -90,16 +96,20 @@
                 <p><a href="https://techworld-with-nana.teachable.com/">Learn DevOps with Nana Janashia</a></p>
                 <p><a href="https://kodekloud.com/learning-path/kubernetes-administrator/">Learn CKA/D with Mumshad Mannambeth</a></p>
             </div>
-        </div>
+        </div> <!-- </aside -->
 
     </div>
 
-    <div>
-        <p>My footer</p>
-    </div>
+    <div id="footer"> <!-- footer -->
+        <p>This is my footer</p>
+    </div> <!-- </footer> -->
 
 </body>
 <style>
+    body {
+        background-color: rgb(169, 168, 202);
+        margin: 0;
+    }
     p {
         color: green;
     }
@@ -107,10 +117,9 @@
         color: blue;
         font-size: 16px;
     }
-    div {
-        border: 1px solid black;
+    /*div {
         margin: 5px;
-    }
+    }*/
     #logo-img {
         width: 30px;
     }
@@ -124,25 +133,64 @@
         display: flex;
         flex-direction: row;
         width: 80%;
-        margin: auto;
+        margin: 15px auto;
     }
-    #header {
+    #header {    /* header */
         display: flex;
         justify-content: space-between;
+        height: 50px;
+        align-items: center;
+        width: 80%;
+        margin: auto;
+    }
+    #header-wrapper {
+        background-color: aliceblue;
     }
     #logo-search-container {
         display: flex;
     }
-    #header input{
-        width: 250px;
+    #header input{                       /* header input */
+        /*width: 250px;*/
         margin-left: 10px;
+        font-size: 18px;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid lightgrey;
+        width: 300px;
     }
-    #article-section{
+    #article-section {                           /*  article */
         width: 70%;
+        background-color: white;
     }
-    #side-section {
+    #article-section div {                       /* article div */
+        padding: 15px;
+    }
+    #side-section {                             /* aside */
         width: 30%;
+        background-color: rgb(214, 208, 208);
+        margin-left: 15px;
     }
+    #side-section div{                          /* aside div */
+        background-color: white;
+        padding: 5px 15px 20px 20px;
+        margin-bottom: 15px;
+    }
+    #footer{                             /* footer */
+        background-color: white;
+        height: 150px;
+        /*text-align: center;*/
+        display: flex;
+        justify-content: center;
+    }
+    button {
+        font-size: 15px;
+        padding: 10px 20px;
+        color: blue;
+        border: 1px solid black;
+        border-radius: 5px;
+        background-color: whitesmoke;
+    }
+    
 </style>
 
 <!-- 
@@ -218,7 +266,7 @@
     - Relative units:
         - most important one: %
         - more dynamic
-        - oercentage unit: it is relative to the parent container
+        - percentage unit: it is relative to the parent container
         - ratio:
             #article-section{
                 flex-grow: 2;
@@ -234,4 +282,41 @@
     The auto value:
     - used to center the element within its container
     - the element takes up the specified width, and the remaining space will be split equally between the left and right margins
+
+    CSS colors:
+    - colors are specified with predefined color names or RGB, HEX and some other values
+
+    padding attribute
+    - used to create space around an element's content inside of any defined borders
+    - e.g. between the main content and the side content
+
+    Margin vs Padding
+    Margin                                                 Padding
+    - Space around an element's border                     - space between an element's border and the content
+    - space outside an element                             - space inside an element
+
+    User-agent stylesheet
+    - user-agent = browser. Browsers have basic style sheets that give default styles to any document
+    - some differences exist between browsers
+            - That's why web developers sometimes use a CSS reset stylesheet, efore  beginning the style adjustments
+    
+    justify content
+    - align the flex items horizontally
+
+    align-items
+    - align the items vertically
+
+    text-align attribute
+    - Defines horizonetal alignment of text in an element
+
+    Semantic elements
+    - elements with a meaning
+    <header> element
+    - represents a container for introductory content or navigational links
+    <article> element
+    - Should make sense on its own. e.g. forum, blog post, news etc.
+    <aside> element
+    - Defines content aside from the page content
+    <footer> element
+    - defines a footer for a document section
 -->
