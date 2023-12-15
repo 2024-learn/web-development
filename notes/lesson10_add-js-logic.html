@@ -1,0 +1,167 @@
+<!--  
+    Handle Button Click
+    Function invocation: 
+    - a block of code is only executed when it is called(invoked)
+    - when an event occurs (like a user clicks on a button)
+
+    JS events:
+    - events are things that hapen to HTML elements
+        something the browser does
+        something a user does
+    - and JS can "react" on these events
+    onclick event
+    - the event occurs when the user clicks on the element
+
+    Style button on hover
+    :hover selector
+    - used to select elements when you mouse over them
+
+    Write "create post" form
+    - the form element is a container for different types of input elements
+    <form>
+        <input>     
+        <label>    
+        <select>
+        <option>    
+        ...
+    </form>
+
+    <label> element: ref- https://w3schools.com/html/html_form_input_types.asp
+    -defines a text label for the <input> tag
+
+    Associate the <label> with the <input>
+    - To tie the elements together:
+        for attribute in label
+        id attribute of input field
+    <label for="title"><b>Title</b></label>
+    <input name="title" type="text" placeholder="Enter Title">
+
+    max-width
+    - defines the maximum width of an element
+    - if content is larger, then max width applies. If smaller, then the max-width has no effect.
+
+    DOM- Document Object Module
+    Document Object
+    - Each HTML document that gets loaded into a window becomes a document object
+    - It is the root node of the HTML document, containing the contents of the page
+    - With it you can access and modify all document content
+
+    var newParagraph = document.createElement("p")
+    var textEl = document.createTextNode("New Text for this new paragraph")
+    newParagraph.appendChild(textEl)
+    sidePost.appendChild(newParagraph)
+    sidePost.getElementsByTagName("h4")[0].style.fontSize="12px"
+    document.getElementById("post-form-container").style.display = "block"
+
+    required Attribute
+    - a boolean attribute
+    - when present, it specifies that input field must be filled out before submitting the form
+
+    other form elements
+        - <input type="email">      validates that you enter a value that is an email format
+        - <input type="password">   hides the characters
+
+    <textarea> element
+    - defines a multi-line text input field
+    - usially used to collect user input like comments or reviews
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            DevOps Roadmap - 2024
+        </title>
+        <link rel="stylesheet" href="lesson09_style.css">
+
+        <link rel="apple-touch-icon" sizes="180x180" href="myfavicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="myfavicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="myfavicon/favicon-16x16.png">
+        <link rel="manifest" href="myfavicon/site.webmanifest">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
+
+        <meta name="keywords" content="devops, learn devops, devops roadmap for beginners, engineering">
+        <meta name="description" content="Tech articles for DevOps projects">
+
+        <script src="lesson10_app.js"></script>
+
+    </head>
+    <body>
+        <div id="header-wrapper">
+            <div id="header">
+                <div id="log-search-container">
+                    <img id="logo-img" src="https://icons-for-free.com/iconfiles/png/256/part+1+p-1320568343314317876.png" />
+                    <input type="text" placeholder="Search...">
+                </div>
+                <button onclick="handleCreatePost()">Create Post</button>   
+            </div>
+        </div>
+
+        <div id="post-form-container">
+            <form>
+                <label><b>Title</b></label>
+                <input type="text" placeholder="Enter Title" required>
+                <label><b>Description</b></label>
+                <input type="text" placeholder="Enter a brief description">
+                <label><b>Post</b></label>
+                <textarea placeholder="Enter Your Post..."></textarea>
+
+                <label><b>E-mail</b></label>
+                <input type="email" placeholder="Enter your email">
+                <label><b>Password</b></label>
+                <input type="password" placeholder="Enter your password">
+                
+                <button id="hide-form-button" onclick="hidePostForm()">Hide Form</button>
+                <button id="save-form-button">Save Form</button>
+            </form>
+        </div>
+        
+        <div id="main-section-container">
+            <div id="article-section">
+                <img id="header-img" src="https://media.istockphoto.com/id/1438577807/vector/devops-icon-software-development-dev-and-it-operations-ops-loop-eight-logo-for-software.jpg?s=612x612&w=0&k=20&c=sFy0wjWXUtabGUlpZpdFaZ_Gsu7FK-9ubUvBmjfcy_k=">
+                <div>
+                    <h1> DevOps Roadmap</h1>
+                    <h3>short info on the article</h3>
+                    <p class="article-metadata"><i>Author: Phyllis L.</i></p>
+                    <p class="article-metadata"><i>Posted on: 12/13/2023</i></p>
+                </div>
+                <div>
+                <p>paragraph 1</p>
+                    <p>paragraph 2</p>
+
+                    <h4>Section header </h4>
+                    <p>paragraph 1</p>
+                    list of things you should do
+                    <ul>
+                        <li>item 1</li>
+                        <li>item 2</li>
+                        <li>item 3</li>
+                        <li>item 4</li>  
+                    </ul>
+                </div>
+            </div>
+
+            <div id="side-section">
+                <div>
+                    <h2>Side Section 1</h2>
+                    <h3>Side article title</h3>
+                    <h4>Short Description</h4>
+                    <a href="https://www.linkedin.com/in/phyllislikimani">Connect With Me</a>
+                </div>
+                <div>
+                    <h2>Side Section 2</h2>
+                    <h3>Another article title</h3>
+                    <h4>short info</h4>
+                    <p><a href="https://techworld-with-nana.teachable.com/">Learn DevOps with Nana Janashia</a></p>
+                    <p><a href="https://kodekloud.com/learning-path/kubernetes-administrator/">Learn CKA/D with Mumshad Mannambeth</a></p>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="footer">
+            <p>This is my footer</p>
+        </div>
+    </body>
+</html>

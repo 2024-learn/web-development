@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(169, 168, 202);
+    background-color: rgb(232, 231, 242);
     margin: 0;
 }
 p {
@@ -76,4 +76,27 @@ button {
     border: 1px solid black;
     border-radius: 5px;
     background-color: whitesmoke;
+}
+#hide-form-button {
+    color: darkred;
+    border: 1px solid darkred;
+}
+#save-form-button {
+    color: darkolivegreen;
+    border: 1px solid rgb(60, 81, 24);
+}
+button:hover {
+    cursor: pointer;
+}
+#post-form-container {
+    /* border: 1px solid black; */
+    max-width: 300px;
+    padding: 10px;
+    margin: auto;
+    display: none;
+}
+#post-form-container input, textarea{
+    width: 100%;
+    margin: 5px 0 20px 0px;
+    padding: 10px;
 }
