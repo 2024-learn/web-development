@@ -1,0 +1,147 @@
+<!-- 
+Why Core Js?
+    - programming languages are constantly improved
+    - ECMAScriot is the official name of JavaScript.
+    - since 20116, versions are named by year (ECMASript 2016, 2017)
+    - Browser developers need to adjust teh browser application to support the new JS version and its functionalities
+    - core-js makes sure that our code works in all older browsers
+    - includes "polyfills" for the newest JS versions
+        - polyfill: a piece of code use to provide modern functionality on older browsers that do not natively support it.
+    - so we can write the latest JS syntax, but at the same time be sure that out users can use a functioning web app, regardless of the browser type/version
+    - we need to inlcude core-js or similar library, no matter which JS framework we use
+    - if we want to use the latest JS syntax, you always need to include it
+
+Library dependencies
+    - `npm install` installs libraries and its dependencies
+        - e.g. Vue js depends on other packages
+        a vue.js app depends on the vuejs framework which depends on other packages
+    - npm manages all of these dependencies
+
+src/
+    - all JS files go in the src/ folder in JS or you will experience an error while trying to compile:
+        - Module not found: Error: Can't resolve './src/main.js'
+
+main.js
+    - where vuejs usage is initialized in our application
+    - instead of linking the libraries like in vanilla js, you use import which is more powerful than script. 
+    - you can specify the exact functions, objects and styles you need from the library or framework, 
+        instead of referencing the whole thing
+    
+import/export is ES6 syntax
+    - modules or import/export is a "new" feature of the last major version of JS
+    - Not all browsers support this module functionality, that's why we need to include core-js, so it works in all browsers
+
+Single-file Components
+    - App.vue or any *.vue file has three parts:
+        - <template>html code goes here</template>
+        - <script>js</script>
+        - <syle>css</style
+    - vue.js allows us to build the entire component in one file
+    - Instead, in vue, the code itself is structured differently; for each feature we have a dedicated vue js file
+        - e.g. login.vue, registration.vue, user.vue etc
+    - A framework usually defines the backbone of your application. Defining the structure of your app
+
+    main.js is the link between the vue.js and all the code in all the vue.js files and index.html
+
+JS modules
+    - modularizing your JS application
+    - Instead of having 1 big file for the whole application, split it up into separate files
+    - A JS module is just a file grouping related code
+    - we use the iport and export keywords to share and receive functionality respectively across different modules
+    - with export, we can export code(variables, objects, functions), which then can be imported in other JS files that need the data or cocept of that module
+    - For every single vue js component, we have and export statement
+
+The Application instance
+    - every vue app starts by creating a new application instance with the "createApp" function
+    The Root Component
+    - "App" is our root component
+    - every vue app requires a "root component" that can contain other components as its children
+
+Mounting the App
+    - an application instance won't render anythin until its .mount() method is called.
+    - it mounts whatever is inside that app to the HTML element, div with an id of app
+
+Transpiling
+    - browsers only understand vanilla JS and cannot natively interpret the syntax of frameworks
+    - different browser versions can interpret different versions of plain JS
+    - transpiling is teh process if converting a higher level language into another higher level language, like Vue js to vanilla JS, or,
+        - even converting to a different version of the same langiage. e.g. JS version 7 to JS version 5
+    - vue js uses @vue/compiler-sfc. Ref: https://www.npmjs.com/package/@vue/compiler-sfc
+    - in order to use that compiler, we need anotther vue js library which will execute the compiler which is a cli tool, @vue/cli-service
+            - ref: https://cli.vuejs.org/#getting-started. 
+            - It is the CLI for vue projects.
+            - it gives us the commands for compilingm starting or packaging Vue.js applications
+
+serve command
+    - compiles and tranpiles Vue.js to vanilla JS
+    - starts a dev server and serves the application to the browser
+    - `vue-cli-service serve`
+            ref: https://cli.vuejs.org/guide/cli-service.html
+    - and because it is not installed in our systems but on the mode modules, the command will be:
+            `node_modules/@vue/cli-service/bin/vue-cli-service.js serve`
+
+public/
+    - holds the indext.html file
+
+Basic Folder Structure
+    - node_modules: auto generated folder containing all installed libraries for our app
+    - source folder: contains all the Vue.js components and JS files
+    - public folder: index file is located here as well as any other static assets
+
+Difference in how the files are served
+    file://
+    - file gets opened from local drive
+    - path = location of the file on our system
+
+http:// (http://localhost:8080 = URL)
+    - resource gets requested via HTTP
+    - resource can come from your own computer(localhost) or from anywhere on the web
+
+
+    - when you run `vue-cli-service serve`, the development server runs in the background 
+        and listens to any changes to the vue.js code; any changes to the app are effected immediately
+
+npm scripts
+    - convenient way to bundle common shell commands for your project
+    - benefits: commands are shared amongst everyone using the codebase, 
+        ensuring that everyone is using the same command with the same cofiguration options
+    - `npm run <name of script>`: to execute our own scripts
+    - instead of running the long command:
+            'node_modules/@vue/cli-service/bin/vue-cli-service.js serve'
+        abstract it from the cli into the scripts in the package.json file:
+             "scripts": {
+                "serve": "node_modules/@vue/cli-service/bin/vue-cli-service.js serve"
+            }
+        and then run on the cli: `npm run serve`
+    - This can be further optimized by:
+            "scripts": {
+                "serve": "vue-cli-service serve"
+            }
+        - Because we are operating this as an npm alias and this is in package.json, 
+            npm knows to find the script being referenced is in the node_modules folder
+
+Nested components
+    - in vue, it is best practice to split app into smaller components.
+    - components allow us to split the UI into independent and reusable pieces
+    - allows us to think about each piece in isolation
+    - custom elements start with a capital letters to differentiate them from the rest of the vue.js elements
+
+Register a componemt:
+    - A vue component needs to be "registered" so that Vue knows where to locate its implementation when it is encountered in a template.
+    - the registered component is only available in the current component (= local registration)
+
+Passing data into component(Data binding)
+    - parameterize our components 
+    - this makes out components reusable
+        - eg. share the same visual layout, but with different content
+    - text interpolation: 
+        - double braces {{ ... }} define placeholders for data
+        - the most basic form of data binding
+        - the double curly brackets will be replaced with the value of the "title" property passed into the component
+    
+Style Bindings
+    - :sytle="{ attribute: placeholder}"
+
+Event Handling
+    - to tie the button to an onlick event in Vue, use @click 
+-->

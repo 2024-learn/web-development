@@ -14,7 +14,7 @@ function handleEditProfile() {
     var inputInterests = document.getElementById("input-interests")
     inputInterests.value = interests
 
-    var datepicker = new Datepicker('#birthday');
+    // var datepicker = new Datepicker('#birthday');
 
     document.getElementById("edit-view").style.display = "block"
     document.getElementById("display-view").style.display = "none"

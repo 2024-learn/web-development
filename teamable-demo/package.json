@@ -2,7 +2,6 @@
   "name": "teamable",
   "version": "0.0.1",
   "dependencies": {
-    "Datepicker.js": "0.1.1",
     "validator": "13.5.0"
   }
 }
