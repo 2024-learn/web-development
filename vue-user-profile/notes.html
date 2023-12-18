@@ -1,65 +1,73 @@
 <!-- 
 Using Vue components instead
-    - all HTML code will be written in Vue components in *.vue files
-    - vue components are HTML-like files and allow us to encapsulate the view, 
-    logic and styling of a component in the same file.
-    
+   - all HTML code will be written in Vue components in *.vue files
+   - vue components are HTML-like files and allow us to encapsulate the view,
+   logic and styling of a component in the same file.
+  
 Initial structure/setup
-    root component - App.vue:
-    - parent component of the app containing all child components
-    1 index.html:
-    - single div element to mount the Vue component interpolation into
-    1 main.js:
-    - create application instance and mount the Root component into the DOM
+   root component - App.vue:
+   - parent component of the app containing all child components
+   1 index.html:
+   - single div element to mount the Vue component interpolation into
+   1 main.js:
+   - create application instance and mount the Root component into the DOM
+
 
 Declaring Component's state and bind data with "v-bind"
-    "data" function
-    - used to declare the reactive state of a componment. Return the initial state
-    - it is a JS object that will be made reactive by Vue, when the function is called on creation of the component
-    - reactivity: when you modify the value of them, the corresponding view updates
+   "data" function
+   - used to declare the reactive state of a component. Return the initial state
+   - it is a JS object that will be made reactive by Vue, when the function is called on creation of the component
+   - reactivity: when you modify the value of them, the corresponding view updates
 
-    "v-bind" or ":"
-    - one of a number of built-in special attributes(also called directives) that Vue provides
-    - Start with the "v-" prefix
-        colon ":" is shorthand for "v-bind"
-    - dynamically binds it to the corresponding data attribute value
-    - reactively apply updates to the DOm when the value of the attribute changes
+
+   "v-bind" or ":"
+   - one of a number of built-in special attributes(also called directives) that Vue provides
+   - Start with the "v-" prefix
+       colon ":" is shorthand for "v-bind"
+   - dynamically binds it to the corresponding data attribute value
+   - reactively apply updates to the DOM when the value of the attribute changes
+
 
 Declaring Methods and bind with "v-on"
-    "methods" function
-    - used to add functions to a component instance
+   "methods" function
+   - used to add functions to a component instance
 
-    v-on or "@"
-    - another built-in special attribute provided by Vue
-    - "@" is shorthand for "v-on"
-    - attaches an event listener to the element
+
+   v-on or "@"
+   - another built-in special attribute provided by Vue
+   - "@" is shorthand for "v-on"
+   - attaches an event listener to the element
+
 
 Declare more reactive state and bind with text interpolation
-    attribute bindings                                          text interpolation
-    - to bind attributes, we use v-bind, v-on, etc.             - use Mustacne synax to bind the values
-    - we can't use Mustache {{ }} syntax
-    Both instruct Vue to keep the valies in sync with the defined data attributes
+   attribute bindings                                          text interpolation
+   - to bind attributes, we use v-bind, v-on, etc.             - use Mustache syntax to bind the values
+   - we can't use Mustache {{ }} syntax
+   Both instruct Vue to keep the values in sync with the defined data attributes
 
-Two-way binding on form inout elements
-    2 core features of Vue
-    Declarative Rendering
-    - vue extends standard HTML with a template syntax that allows us to declaratively describe HTML output based on JS state
-    Reactivity
-    - vue automatically tracks JS state changes and efficiently updates the DOM when changes happen
 
-    template syntax
-    - under the hood, vue compiles the templates into highly-optimzed JS code
+Two-way binding on form input elements
+   2 core features of Vue
+   Declarative Rendering
+   - vue extends standard HTML with a template syntax that allows us to declaratively describe HTML output based on JS state
+   Reactivity
+   - vue automatically tracks JS state changes and efficiently updates the DOM when changes happen
 
-    v-model
-    - creates a two-way binding
-    - it binds the value of the input element to the property od the component's data
-    - updates the template whenever the model(data) changes and updates the model whenever the template changes
-    - it reduces the complexity of keeping user input consistent with teh application data model
-    - we do not need to manually sync the state of the form input with the corresponding state in JS
+
+   template syntax
+   - under the hood, vue compiles the templates into highly-optimized JS code
+
+
+   v-model
+   - creates a two-way binding
+   - it binds the value of the input element to the property of the component's data
+   - updates the template whenever the model(data) changes and updates the model whenever the template changes
+   - it reduces the complexity of keeping user input consistent with the application data model
+   - we do not need to manually sync the state of the form input with the corresponding state in JS
+
 
 Toggle element visibility with "v-show"
-    v-show
-    - Toggle the element visibility depending on if the value is true or false
-    -
-
+   v-show
+   - Toggle the element visibility depending on if the value is true or false
+   -
 -->
