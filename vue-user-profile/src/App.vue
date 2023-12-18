@@ -1,5 +1,5 @@
 <template>
-    <div v-show="true" id="display-view">
+    <div v-show="!isEditMode">
         <h1>User Profile</h1>
         <img :src="image">
 
@@ -15,7 +15,7 @@
         <button @click="handleEditProfile">Edit Profile</button>
     </div>
 
-    <div v-show="false" id="edit-view">
+    <div v-show="isEditMode">
         <h1>User Profile</h1>
         <img :src="image">
 
@@ -45,16 +45,17 @@ export default {
             image: image,
             name: "Phyllis L.",
             email: "phyllis-mamz@mamz.com",
-            interests: "Site Reliability Engineering, CyberSecurity"
+            interests: "Site Reliability Engineering, CyberSecurity",
+            isEditMode: false
         }
     },
     methods: {
         handleEditProfile() {
-            document.getElementById("edit-view").style.display = "block"
-            document.getElementById("display-view").style.display = "none"
+            this.isEditMode = true
         },
-        
+
         handleUpdateProfile() {
+            this.isEditMode = false
         }
     }
 }
