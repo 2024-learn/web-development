@@ -1,0 +1,218 @@
+<!--
+Modules in JS
+    - same as JS libraries
+
+Express
+    - A web application framework
+    - provides a set of features for web apps
+    - helps to manage a server and routes
+    - `npm install express`
+
+require()
+    - to include a module in your app
+    - similar to import
+
+Different variable declarations:
+    var 
+    - value can be updated.
+    - the only way before the new JS version was added to better alternatives
+
+    const
+    - introduced with the second major revison of JS
+    - value cannot be updated
+    - the preferred way if the variable will not and should not be updated
+
+    let
+    - introduced with the 2nd version of JS
+    - value can be updated
+    - better version of var because it helps prevent errors
+
+Semicolons(optional)
+    - lets the compiler know it has reached the end of a command
+    - optional, because they will be inserted automatically in JS
+    - for conistency: either ALWAY use it or NEVER use it
+
+app.listen()
+    - starts a server
+    - which listens for connections on the specified host and port
+    - starts our backend application and makes it available
+    - there are two parameters that the listen function expects:
+        - on which port the app should listen
+        - what the app should do when receiving the HTTP request
+
+node
+    - we use node command to start our nodeJS app
+    - `node server.js`
+    - * also start and restart application when you make changes to the server.js file since it does not reload like in Vue
+
+
+localhost
+    - the hostname or the computer that is currently in use to run the program
+    - so it means "this" computer in a network
+    - used for testing purposes in development, not actual production
+
+ports
+    - ports are virtual places within an OS, where network connections start and end
+    - every machine has a range of ports available
+    - these ports can be allocated to different applications
+    - every app/service runs and is available on a specific port, 
+        making it possible to identify and address a specific application on the machine
+
+http protocol
+    - system of rules that define how data is exchanged
+    - index.html is the entrypoint of every application
+    - the backend that serves the index.html file is also called the server application becasue it serves the response
+    - the browser that makes the request is also called the client
+    - http is about communication between web clients and servers
+    - client sends the http request, server sends the response
+
+    - the browser only requests what is referenced in the index.html or subsequent html files
+
+backend responsibilities
+    - get and save data in database
+    - execute heavy logic/ data processing / validation
+    - receive requests from clients and send requested data back : acting as a web server
+
+URL(Uniform Resource Locator)
+    - also colloquially called "web address"
+    - URI- uniform resource Identifier
+
+
+    app.use('/', './public')
+    / function listening(){
+    //    console.log("node app is listening on port 3000")
+    // } 
+    app.use('/', express.static(__dirname + '/'))
+
+// function listening(){
+//     console.log("node app is listening on port 3000")
+// }
+    - built-in function that serves static files
+__dirname
+    - variable that gives you the absolute path of the directory containing the currently executing file
+
+HTTP response status codes
+    - indicate whether a specific HTTP request has been succesfully completed
+        - 200   request succeeded
+        - 304   not modified: indicates to the browser that there is no need to retransmit the 
+                requested resources
+                it's an implicit redirection to a cached resource
+        - 404   server cannit find the requested resource
+    - responses are grouped in five classes
+        informational responses: 100-199
+        successful responses:    200-299
+        redirection messages:    300-399
+        client error responses:  400-499
+            - bad request from client. client or user has to fix an error before trying again
+              e.g. - request for a non-existent resource (404 - not found)
+                  - user entered some invalid data (400 - bad request)
+                  - not allowed to perform this action (403 - forbidden)
+        server error responses:  500-599
+            - valid request was made by the client byt the server failed to complete the request
+                - there is a problem with the backend
+            e.g. - 500 - internal server error
+                       - best to retry
+
+JSON
+    - easy syntax, human- readable text
+    - JS can easily convert JSON data into JS objects
+        JSON.parse():       convert to JS object
+        JSON.stringify():   convert JS object into JSON string
+    - each programming language has its own syntax
+    - all applications no matter their programming language can exchange data using JSON
+
+HTTP Messages(Request and Responses) consist of Header and Body
+    - metadata is in the HTTP header
+    - "payload" is the information or data sent in the HTTP message body
+
+fetch()
+    - provides an easy to fetch resources acoss the network
+    - parameters: 
+        - the endpoint/URL on which we want to talk to the backend
+            Endpoint:
+                - A web address(URL) at which the clients can gain access to the app
+                - we can create our own endpoints in the backend. e.g. to-do-tasks
+                - usually comes after the slash. eg. http://localhost:3000/to-do-tasks
+        - an object that contains some configuration about the HTTP request
+            - HTTP requests and responses need to have a specific format
+    - fetch abstracts away the complexity
+        - we only need to configure a few things, and the rest is handled by the fetch method; 
+          and there are also default values which are set by the browser itself
+
+HTTP Methods
+    - used to indicate the desired action to be performed for a given resource
+    - the most important ones are:
+        - GET:      retrieve or get data
+        - POST:     send data to the server
+        - PUT:      update/replace data
+        - PATCH:    update/modify data
+        - DELETE:   delete data
+
+HTTP header
+    - adds additional context and metadata about the request or the response
+        - headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            (meaning we are sending the data in json and expecting the data back in JSON)
+
+await
+    - fetch() is unlike the other functions we have written so far. It is an asynchronous function
+    - sometimes the http request might be slow or the backend is unavailable or that the request is taking a while to process. 
+        - it might take a while to receive the ersponse
+        - we do not want it to wait for the response and block the UI;
+          the user should be able to continue using the website.
+            - use case: imagine uploading a photo to social media. 
+                If that photo takes a while to post to the backend, and the fetch() was synchronous, 
+                then your app would freeze while that request is being processed before you can proceed
+    
+        Synchronous vs. Asynchronous
+        - synchronous calls are blocking.
+        - the request must complete before the browser can continue with the execution
+
+        - Asynchronous calls or requests are non blocking
+        - tasks can run simultaneously
+
+    Handling the "promise" with async/await
+        - a "promise" is an onject representing the eventual completion or failure of an asynchromous operation
+        - you receive a "promise" immediately, not the actual response
+        - with await keyword, the actual response is assigned to out variable once the request completes
+        - you can store the await into a variable called res or response
+
+    You cannot use an Async() within a sync(). The parent also has to be asynch()
+
+Create the HTTP endpoint in backend
+    Adding a new endpoint or route
+        - route definition takes the followinf structure:
+          app.METHOD(PATH, HANDLER)
+        - where;
+            - app is a instance of express
+            - METHOD is an HTTP request method, in lower case
+            - PATH is a path on the server
+            - HANDLER is the function executed when the route is matched
+                request handler:
+                - a function, which is executed whenever a request is received on the specified path.
+                - it has two parameters:
+                    - to handle the request, 2 parameters are provided: the request and response object
+    
+    app.post('/save-task', function(req, res) {}) -> will get executed whenever a POST request is sent to this endpoint
+
+response object
+    - the res object exposes several functions that let you configure and send a response to an HTTP request
+    - res.send() is the most basic way to send an HTTP response
+
+body-parser module
+    - extracts the body protion of an incoming request and parses the JSOn data and exposes it on req.body
+    - parsing: translating from one format to another
+
+app.use(middleware)
+    - app.use() lets you register middleware or a chain of middleware
+    - these are executed before the end route (app.get, app.post, etc.)
+    - so middleware is basically at teh very entrance to the backend
+    - every request will actually go through this middleware
+
+Get data from the backend
+    onload Event
+        - event occurs when an object has been loaded
+        - adding it on the body element executes JS immediately after a page has been loaded
+-->
