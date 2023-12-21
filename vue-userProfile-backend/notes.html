@@ -1,0 +1,32 @@
+<!--
+Develop Backend for vue-user-profile
+    - since the front end and the backend are both using javascript, we have two options:
+        - share package.json
+        - frontend and backend each have tehir own package.json
+
+"serve" command
+    - compiles Vue.js into JS
+    - starts a dev server
+
+"build" command
+    - Produces a production-ready bundle in the /dist directory
+    - compiles vue into js and minifies JS/CSS/HTML
+        - minification: the process of minimizing code by removing any unnecessary characters, spaces, etc.
+        - why: to reduce load times, minified versions reduce file sizes dramatically
+    - `npm run build`
+    - builds a /dist folder
+
+"start" command
+    - starts the application
+    - npm run start
+    
+created()
+    - is called when the component instance is created
+
+Application flow
+    - created() gets called when App component is created/loaded in the browser
+    - calling fetchUserProfile() which makes a HTTP request to the backend on the get-profile endpoint
+    - backend sends back the user data, a JS object that contains name, email and interests
+    - we set or update the component's state with the user data
+    - vue.js automatically updates the view accordingly
+-->
