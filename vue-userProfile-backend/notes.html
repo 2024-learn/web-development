@@ -29,4 +29,96 @@ Application flow
     - backend sends back the user data, a JS object that contains name, email and interests
     - we set or update the component's state with the user data
     - vue.js automatically updates the view accordingly
+
+
+=================================================================================================================================================
+Connecting Backend to Database
+
+Installation with brew package manager
+`brew tap`
+    - taps are external sources of homebrew formulae
+    - adds another repository to the list of formulae that homebrew tracks, updates and installs from
+
+install mongodb on MacOS:
+ref: https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-os-x/#std-label-install-mdb-community-macos
+
+start mongodb:
+`brew services start mongodb-community@7.0`
+
+stop mongodb:
+`brew services stop mongodb-community@7.0`
+
+connect to mongodb:
+`mongosh`
+
+show existing databases:
+`show dbs`
+
+create a different db:
+`use <name of new db>`
+
+switch to other db:
+`use <name of existing db>`
+
+our app: database:   "company_db"
+         collection: "employees"
+
+show collections
+`show collections`
+
+    // save payload data to db
+    // await collection.insertOne({_id: 1})
+    // await collection.insertOne({_id: 2})
+
+find data in a collection
+db.collectionname.find()
+`db.employees.find()`
+
+MongoDB library
+    - the oficial MongDB driver for node.js
+
+MongoDB Node.js Driver: ref- https://www.npmjs.com/package/mongodb
+    - Allow node.js apps to connect to MongoDB and work with data
+    - MongoDB uses a mongodb protocol just as out app uses a http protocol
+    - mongodb driver is the intermediary. It acts a translator
+    - there are mongodb drivers for different programming languages.
+    - mongodb node driver works with Node or JS specifically
+        connection URL      mongdb://localhost:27017
+        mongodb             the protocol
+        localhost           the hostname or IP address
+        27017               the port number
+
+create a new mongo client
+    - creates a new client that can talk to the Mongo server on the URL we provide
+    - we can use that client object to use its methods to connect and interact with the server
+
+unique "_id" field
+    - each document stored ina coleection requires a unique _id field
+    - if not provided, thte mongodb driver automatically generates an id for the _id field
+
+insertOne()
+    - inserts a single document into a collection
+    - it's only for insertion not for updating documents
+        await collection.insertOne(payload);
+    
+deleteOne()
+    - removes a single document from a collection
+    - {} includes the filter or deletion criteria
+    - delete data from a collection, user deleteOne, deleteMany findOneAndDelete or bulkWrite. e.g.
+        - `db.employees.deleteOne({ _id: 2})`
+        - `db.employees.deleteOne({_id: ObjectId('65874176b8cfebc6c262ba51')})`
+
+updateOne()
+    - updates a single document within the collection based on the filter
+    - 1st parameter: filter = the selection criteria for the update
+    - 2nd parameter: update = the modifications to apply
+    - 3rd parameter: upsert = takes a boolean value (optional). if true, updates the documnet that matches the filter or creates a new document
+                              if no documents match the filter.
+
+findOne()
+    - returns one document that satisfies the specified query citeria on the collection
+    - if multiple documents satisfy the query, the method returns the first document
+    
+null
+    - the value "null" means that no value exists
 -->
