@@ -148,6 +148,7 @@ null
    - the value "null" means that no value exists
 -->
 
+=======================================================================================================================================================
 
 <!--
 Test Automation
@@ -289,5 +290,81 @@ Simulate the browser/frontend
    
 -->
 
+=========================================================================================================================================
+<!--
+Packaging the App
+
+"Building"
+    - building is compiling all the software
+    - compiling takes higher level ptogramming langiage code and translates it into machine code
+
+"Packaging"
+    - the packaging process gets the software ready for deployment
+    - how you intend to transport the software (package into zip file or create an installer, etc.)
+
+Creating a new release of the app
+    - a release is the distribution of the newest version of our application
+    - this new version will include all our new features and bugfixes
+    - the name and version of the package is pulled from package.json file 
+        <package-name>-<version> teamable-0.0.1
+
+Build Frontend
+    - "build" transpiles code and puts production ready bund;e into dist/ directory
+    - it will build the latest state even if the dist/ folder already exists
+
+What the tester needs to receive:
+   - backend code(server.js)
+   - compiled frontend code(dist/)
+   - dependencies (can be easily recreated, node_modules is too large)
+   - index.html the one in dist/
+   - package.json
+
+resulting file type/artifact:
+   - zip: a zip is a set of files packaged together into a single file and compressed using the gzip compression program
+   - tarball:  A set of files packaged together into a single file, but not compressed
+
+How to package
+   - use the command: `npm pack`
+   - by default, it will package everything in the project except for the node_modules and the package-lock.json file
+
+Gzipped Tar file (.tgz)
+   - it's a tar archive file that has been compressed using gzip software
+   - to view `open .`
+
+.npmignore
+   - there are files that need to be ignored to take the package smaller. we do that by creating a .npmignore folder and adding the files to be ignored in it
+   - list files and folders that you want to keep out of the resulting package
+
+devDependencies
+   Packages for development
+   - libraries needed only when developing and testing the app
+      - test libraries (jest, supertest)
+   - framework specific libraries (@vue/compiler-sfc, @vue/cli-service)
+
+   packages for production
+   - packages required to just run the appliation
+   - we do not need test libraries to run the app
+   - we only have vanilla js here, no vue.js code anymore
+
+  - so now we can split the dependencies into two:
+   - dependencies: packages required for production
+   - devDependencies: packages only needed for local development or testing
+
+   `npm install` installs dependencies and devDependencies
+   `npm install --omit=dev` will now only install production dependencies
+
+Commands used to start the application from the artifact:
+   - `cd ~/Downloads`
+   - `ls teamable-0.0.1.tgz`
+   - `cd package`
+   - `npm install --omit=dev`
+   - `npm run start`
+
+Artifacts and artifact repository
+   artifact
+   - build artifacts are the files created by the build process
+   artifact repository
+   - storage for the artifacts
+-->
 
 
