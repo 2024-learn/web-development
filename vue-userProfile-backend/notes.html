@@ -2,7 +2,7 @@
 Develop Backend for vue-user-profile
     - since the front end and the backend are both using javascript, we have two options:
         - share package.json
-        - frontend and backend each have tehir own package.json
+        - frontend and backend each have their own package.json
 
 "serve" command
     - compiles Vue.js into JS
@@ -121,4 +121,120 @@ findOne()
     
 null
     - the value "null" means that no value exists
+-->
+
+<!-- 
+Test Automation
+    Test manually                                         Write Automated tests
+    - slow and tedious                                    - save time and more reliable
+    - not always accurate dure to human error
+    - useful for specific type of tests
+
+Writing Automated Tests
+test frameworks/libraries
+    - facilitate writing and executing tests and reporting test results
+    - every programming language and framework has its own test libraries
+    - different test types also have different testing frameworks
+
+Types of tests:
+    Unit tests
+        - simplest test type. easy to write becasue they are fully isolated
+        - testing just one single object or unit
+        - important to test different edge cases; not just random values
+        - unit tests are cheap to automate and can run very quickly
+
+    Integration tests
+        - test dependencies with other systems, like testing a function that calls other functions
+        - more complex to test and more expensive to run as they require multiple parts of the application to be up and running
+        - integrated with other systems, like database
+        - tests that the functions work in combination, e.g. testing the interation with the database or other services, 
+            as such these tests are more valuable.
+
+    End to End tests (E2E) ot UI tests
+        - test end to end flows, from browser interaction to bacekend and database
+        - E2E tests simulate behavior with the software. Tests the entire software from beginning to end
+        - They verify that various user flows work as expected, like logging in
+        - verify that the UI is working as expected (UI tests)
+        - there are E2E test frameworks for writing such tests. eg. Selenium for JS, puppeteer, etc.
+
+    Performance tests
+        - testing the application/website performance under a high load
+        - evaluate how a system performs under a particular workload
+        - Performance tests simulate these workloads, measuring reliability, speed, scalability, responsiveness
+
+Test Coverage:
+    - test coverage is a percentage measure of the degree to which the source code of an application is tested
+
+Add new functionality to our code
+    - we are going to test if the email is valid
+
+    logical NOT(!)
+        - also called negation
+        - takes truth to falsify and vice versa
+        - typically used for boolean values: truth becomes false, false becomes true
+
+Different ways of exporting and importing:
+    Name Export                                             Name Import
+    `export const name = 'value'`                           `import { name } from '....'`
+
+    Default export                                          Default Import
+    `export default 'value'`                                `import anyName from '...'`
+
+    Rename Export                                           Rename Import
+    `export { name as newName}`                             import { newName } from '...'
+
+    Export List + Rename                                    Import List + Rename
+    export {                                                import {
+        name1                                                   name1 as newname1
+        name2 as newName2                                       newName2
+    }                                                       } from '...'
+
+Destructuring:
+    - makes it possible to unpack values from properties from objects or arrays into disticit variables e.g.
+        const validatorFunctions = require('./validator') into const {isInvalidEmail, isEmptyPayload}
+
+Jest
+    - Jest is a popular JS testing framework
+    - can also be used for Vue, React, Angular and other JS projects
+    - test frontend and backend code with it
+
+    Naming Jest test files
+    - you should name your testing files with the same name of the file you want to test plus '.test'. eg. validator.test.js
+
+    1st test case:
+    call function with a valid email          we expect "false"
+
+    2nd test case:
+    call function with an invalid email        we expect "true"
+
+    How to write a test in Jest
+        - jest uses "matchers" to let you test values in different ways
+        - there are different mathchers available. (.toBe() is the matcher in our case)
+        - we want to compare the output of our test with a value we expect the function to return
+
+    - to run the test, inlust this in the scripts in the package.json file:
+        "test": "jest"
+      then on the CLI, run:
+      `npm run test`
+
+why unit tests:
+    refactoring
+        - the process of resstructuring code, wile not changing its original functionality
+    unit tests help make sure that the code is not broken after refactoring
+
+-->
+
+<!--
+Integration tests
+Simulate the browser/frontend
+    - this is also called "mocking"
+    - mock is a method/object that simulates the behavior of a real method/object in controlled ways
+    - we need to simulate sending an HTTP request to the backend
+
+    we shall be testing the /update-profile handler
+    send invalid payload > Error message
+    send correct payload > success message
+
+    - use supertest library. ref: https://www.npmjs.com/package/supertest#supertest
+    - 
 -->

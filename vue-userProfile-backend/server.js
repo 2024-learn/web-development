@@ -2,6 +2,10 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const { MongoClient } = require('mongodb')
+// const validatorFunctions = require('./validator')
+// const {isInvalidEmail, isEmptyPayload} = require('./validator')
+const { isEmptyPayload, isInvalidEmail } = require('./validator')
+
 
 // Connection URL
 const url = 'mongodb://localhost:27017'
@@ -15,12 +19,6 @@ app.use(bodyParser.json())
 app.use('/', express.static(__dirname + '/dist'))
 
 app.get('/get-profile', async function(req, res) {
-    // const response = {
-    //     name: "Phyllis L.",
-    //     email: "phyllis@msmamas.com",
-    //     interests: "tech"
-    // }
-
     // Use connect method to connect to the mongodb server
     await client.connect()
     console.log('Connected successfully to server')
@@ -49,14 +47,11 @@ app.post('/update-profile', async function(req, res) {
     const payload = req.body
     console.log(payload)
 
-    if (Object.keys(payload).length === 0) {
-        // res.status(400).send({error: "empty payload; could not update user profile data"}) --> this sets the health status code
-        res.send({error: "empty payload; could not update user profile data"})
+    // if (Object.keys(payload).length === 0 || isInvalidEmail(payload)) {
+    // if (validatorFunctions.isEmptyPayload(payload)|| validatorFunctions.isInvalidEmail(payload)) {
+    if (isEmptyPayload(payload) || isInvalidEmail(payload)) {
+        res.send({error: "invalid payload; could not update user profile data"})
     } else {
-        // else update the data and send a message that it was successful
-        // res.status(200).send({info: "user profile data updated successfully"})
-
-        
         // Use connect method to connect to the mongodb server
         await client.connect()
         console.log('Connected successfully to server')
@@ -76,6 +71,11 @@ app.post('/update-profile', async function(req, res) {
     }
 })
 
-app.listen(3000, function(){
+const server = app.listen(3000, function(){
     console.log(" node app listening on port 3000")
 })
+
+module.exports = {
+    app,
+    server
+}
