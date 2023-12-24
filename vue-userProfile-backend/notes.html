@@ -1,240 +1,293 @@
 <!--
 Develop Backend for vue-user-profile
-    - since the front end and the backend are both using javascript, we have two options:
-        - share package.json
-        - frontend and backend each have their own package.json
+   - since the front end and the backend are both using javascript, we have two options:
+       - share package.json
+       - frontend and backend each have their own package.json
+
 
 "serve" command
-    - compiles Vue.js into JS
-    - starts a dev server
+   - compiles Vue.js into JS
+   - starts a dev server
+
 
 "build" command
-    - Produces a production-ready bundle in the /dist directory
-    - compiles vue into js and minifies JS/CSS/HTML
-        - minification: the process of minimizing code by removing any unnecessary characters, spaces, etc.
-        - why: to reduce load times, minified versions reduce file sizes dramatically
-    - `npm run build`
-    - builds a /dist folder
+   - Produces a production-ready bundle in the /dist directory
+   - compiles vue into js and minifies JS/CSS/HTML
+       - minification: the process of minimizing code by removing any unnecessary characters, spaces, etc.
+       - why: to reduce load times, minified versions reduce file sizes dramatically
+   - `npm run build`
+   - builds a /dist folder
+
 
 "start" command
-    - starts the application
-    - npm run start
-    
+   - starts the application
+   - npm run start
+  
 created()
-    - is called when the component instance is created
+   - is called when the component instance is created
+
 
 Application flow
-    - created() gets called when App component is created/loaded in the browser
-    - calling fetchUserProfile() which makes a HTTP request to the backend on the get-profile endpoint
-    - backend sends back the user data, a JS object that contains name, email and interests
-    - we set or update the component's state with the user data
-    - vue.js automatically updates the view accordingly
+   - created() gets called when App component is created/loaded in the browser
+   - calling fetchUserProfile() which makes a HTTP request to the backend on the get-profile endpoint
+   - backend sends back the user data, a JS object that contains name, email and interests
+   - we set or update the component's state with the user data
+   - vue.js automatically updates the view accordingly
+
+
 
 
 =================================================================================================================================================
 Connecting Backend to Database
 
+
 Installation with brew package manager
 `brew tap`
-    - taps are external sources of homebrew formulae
-    - adds another repository to the list of formulae that homebrew tracks, updates and installs from
+   - taps are external sources of homebrew formulae
+   - adds another repository to the list of formulae that homebrew tracks, updates and installs from
+
 
 install mongodb on MacOS:
 ref: https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-os-x/#std-label-install-mdb-community-macos
 
+
 start mongodb:
 `brew services start mongodb-community@7.0`
+
 
 stop mongodb:
 `brew services stop mongodb-community@7.0`
 
+
 connect to mongodb:
 `mongosh`
+
 
 show existing databases:
 `show dbs`
 
+
 create a different db:
 `use <name of new db>`
+
 
 switch to other db:
 `use <name of existing db>`
 
+
 our app: database:   "company_db"
-         collection: "employees"
+        collection: "employees"
+
 
 show collections
 `show collections`
 
-    // save payload data to db
-    // await collection.insertOne({_id: 1})
-    // await collection.insertOne({_id: 2})
+
+   // save payload data to db
+   // await collection.insertOne({_id: 1})
+   // await collection.insertOne({_id: 2})
+
 
 find data in a collection
 db.collectionname.find()
 `db.employees.find()`
 
+
 MongoDB library
-    - the oficial MongDB driver for node.js
+   - the official MongDB driver for node.js
+
 
 MongoDB Node.js Driver: ref- https://www.npmjs.com/package/mongodb
-    - Allow node.js apps to connect to MongoDB and work with data
-    - MongoDB uses a mongodb protocol just as out app uses a http protocol
-    - mongodb driver is the intermediary. It acts a translator
-    - there are mongodb drivers for different programming languages.
-    - mongodb node driver works with Node or JS specifically
-        connection URL      mongdb://localhost:27017
-        mongodb             the protocol
-        localhost           the hostname or IP address
-        27017               the port number
+   - Allow node.js apps to connect to MongoDB and work with data
+   - MongoDB uses a mongodb protocol just as out app uses a http protocol
+   - mongodb driver is the intermediary. It acts a translator
+   - there are mongodb drivers for different programming languages.
+   - mongodb node driver works with Node or JS specifically
+       connection URL      mongodb://localhost:27017
+       mongodb             the protocol
+       localhost           the hostname or IP address
+       27017               the port number
+
 
 create a new mongo client
-    - creates a new client that can talk to the Mongo server on the URL we provide
-    - we can use that client object to use its methods to connect and interact with the server
+   - creates a new client that can talk to the Mongo server on the URL we provide
+   - we can use that client object to use its methods to connect and interact with the server
+
 
 unique "_id" field
-    - each document stored ina coleection requires a unique _id field
-    - if not provided, thte mongodb driver automatically generates an id for the _id field
+   - each document stored in a collection requires a unique _id field
+   - if not provided, the mongodb driver automatically generates an id for the _id field
+
 
 insertOne()
-    - inserts a single document into a collection
-    - it's only for insertion not for updating documents
-        await collection.insertOne(payload);
-    
+   - inserts a single document into a collection
+   - it's only for insertion not for updating documents
+       await collection.insertOne(payload);
+  
 deleteOne()
-    - removes a single document from a collection
-    - {} includes the filter or deletion criteria
-    - delete data from a collection, user deleteOne, deleteMany findOneAndDelete or bulkWrite. e.g.
-        - `db.employees.deleteOne({ _id: 2})`
-        - `db.employees.deleteOne({_id: ObjectId('65874176b8cfebc6c262ba51')})`
+   - removes a single document from a collection
+   - {} includes the filter or deletion criteria
+   - delete data from a collection, user deleteOne, deleteMany findOneAndDelete or bulkWrite. e.g.
+       - `db.employees.deleteOne({ _id: 2})`
+       - `db.employees.deleteOne({_id: ObjectId('65874176b8cfebc6c262ba51')})`
+
 
 updateOne()
-    - updates a single document within the collection based on the filter
-    - 1st parameter: filter = the selection criteria for the update
-    - 2nd parameter: update = the modifications to apply
-    - 3rd parameter: upsert = takes a boolean value (optional). if true, updates the documnet that matches the filter or creates a new document
-                              if no documents match the filter.
+   - updates a single document within the collection based on the filter
+   - 1st parameter: filter = the selection criteria for the update
+   - 2nd parameter: update = the modifications to apply
+   - 3rd parameter: upsert = takes a boolean value (optional). if true, updated the document that matches the filter or creates a new document
+                             if no documents match the filter.
+
 
 findOne()
-    - returns one document that satisfies the specified query citeria on the collection
-    - if multiple documents satisfy the query, the method returns the first document
-    
+   - returns one document that satisfies the specified query criteria on the collection
+   - if multiple documents satisfy the query, the method returns the first document
+  
 null
-    - the value "null" means that no value exists
+   - the value "null" means that no value exists
 -->
 
-<!-- 
+
+<!--
 Test Automation
-    Test manually                                         Write Automated tests
-    - slow and tedious                                    - save time and more reliable
-    - not always accurate dure to human error
-    - useful for specific type of tests
+   Test manually                                         Write Automated tests
+   - slow and tedious                                    - save time and more reliable
+   - not always accurate due to human error
+   - useful for specific type of tests
+
 
 Writing Automated Tests
 test frameworks/libraries
-    - facilitate writing and executing tests and reporting test results
-    - every programming language and framework has its own test libraries
-    - different test types also have different testing frameworks
+   - facilitate writing and executing tests and reporting test results
+   - every programming language and framework has its own test libraries
+   - different test types also have different testing frameworks
+
 
 Types of tests:
-    Unit tests
-        - simplest test type. easy to write becasue they are fully isolated
-        - testing just one single object or unit
-        - important to test different edge cases; not just random values
-        - unit tests are cheap to automate and can run very quickly
+   Unit tests
+       - simplest test type. easy to write because they are fully isolated
+       - testing just one single object or unit
+       - important to test different edge cases; not just random values
+       - unit tests are cheap to automate and can run very quickly
 
-    Integration tests
-        - test dependencies with other systems, like testing a function that calls other functions
-        - more complex to test and more expensive to run as they require multiple parts of the application to be up and running
-        - integrated with other systems, like database
-        - tests that the functions work in combination, e.g. testing the interation with the database or other services, 
-            as such these tests are more valuable.
 
-    End to End tests (E2E) ot UI tests
-        - test end to end flows, from browser interaction to bacekend and database
-        - E2E tests simulate behavior with the software. Tests the entire software from beginning to end
-        - They verify that various user flows work as expected, like logging in
-        - verify that the UI is working as expected (UI tests)
-        - there are E2E test frameworks for writing such tests. eg. Selenium for JS, puppeteer, etc.
+   Integration tests
+       - test dependencies with other systems, like testing a function that calls other functions
+       - more complex to test and more expensive to run as they require multiple parts of the application to be up and running
+       - integrated with other systems, like database
+       - tests that the functions work in combination, e.g. testing the interaction with the database or other services,
+           as such these tests are more valuable.
 
-    Performance tests
-        - testing the application/website performance under a high load
-        - evaluate how a system performs under a particular workload
-        - Performance tests simulate these workloads, measuring reliability, speed, scalability, responsiveness
+
+   End to End tests (E2E) ot UI tests
+       - test end to end flows, from browser interaction to backend and database
+       - E2E tests simulate behavior with the software. Tests the entire software from beginning to end
+       - They verify that various user flows work as expected, like logging in
+       - verify that the UI is working as expected (UI tests)
+       - there are E2E test frameworks for writing such tests. eg. Selenium for JS, puppeteer, etc.
+
+
+   Performance tests
+       - testing the application/website performance under a high load
+       - evaluate how a system performs under a particular workload
+       - Performance tests simulate these workloads, measuring reliability, speed, scalability, responsiveness
+
 
 Test Coverage:
-    - test coverage is a percentage measure of the degree to which the source code of an application is tested
+   - test coverage is a percentage measure of the degree to which the source code of an application is tested
+
 
 Add new functionality to our code
-    - we are going to test if the email is valid
+   - we are going to test if the email is valid
 
-    logical NOT(!)
-        - also called negation
-        - takes truth to falsify and vice versa
-        - typically used for boolean values: truth becomes false, false becomes true
+
+   logical NOT(!)
+       - also called negation
+       - takes truth to falsify and vice versa
+       - typically used for boolean values: truth becomes false, false becomes true
+
 
 Different ways of exporting and importing:
-    Name Export                                             Name Import
-    `export const name = 'value'`                           `import { name } from '....'`
+   Name Export                                             Name Import
+   `export const name = 'value'`                           `import { name } from '....'`
 
-    Default export                                          Default Import
-    `export default 'value'`                                `import anyName from '...'`
 
-    Rename Export                                           Rename Import
-    `export { name as newName}`                             import { newName } from '...'
+   Default export                                          Default Import
+   `export default 'value'`                                `import anyName from '...'`
 
-    Export List + Rename                                    Import List + Rename
-    export {                                                import {
-        name1                                                   name1 as newname1
-        name2 as newName2                                       newName2
-    }                                                       } from '...'
+
+   Rename Export                                           Rename Import
+   `export { name as newName}`                             import { newName } from '...'
+
+
+   Export List + Rename                                    Import List + Rename
+   export {                                                import {
+       name1                                                   name1 as newname1
+       name2 as newName2                                       newName2
+   }                                                       } from '...'
+
 
 Destructuring:
-    - makes it possible to unpack values from properties from objects or arrays into disticit variables e.g.
-        const validatorFunctions = require('./validator') into const {isInvalidEmail, isEmptyPayload}
+   - makes it possible to unpack values from properties from objects or arrays into distinct variables e.g.
+       const validatorFunctions = require('./validator') into const {isInvalidEmail, isEmptyPayload}
+
 
 Jest
-    - Jest is a popular JS testing framework
-    - can also be used for Vue, React, Angular and other JS projects
-    - test frontend and backend code with it
+   - Jest is a popular JS testing framework
+   - can also be used for Vue, React, Angular and other JS projects
+   - test frontend and backend code with it
 
-    Naming Jest test files
-    - you should name your testing files with the same name of the file you want to test plus '.test'. eg. validator.test.js
 
-    1st test case:
-    call function with a valid email          we expect "false"
+   Naming Jest test files
+   - you should name your testing files with the same name of the file you want to test plus '.test'. eg. validator.test.js
 
-    2nd test case:
-    call function with an invalid email        we expect "true"
 
-    How to write a test in Jest
-        - jest uses "matchers" to let you test values in different ways
-        - there are different mathchers available. (.toBe() is the matcher in our case)
-        - we want to compare the output of our test with a value we expect the function to return
+   1st test case:
+   call function with a valid email          we expect "false"
 
-    - to run the test, inlust this in the scripts in the package.json file:
-        "test": "jest"
-      then on the CLI, run:
-      `npm run test`
+
+   2nd test case:
+   call function with an invalid email        we expect "true"
+
+
+   How to write a test in Jest
+       - jest uses "matchers" to let you test values in different ways
+       - there are different matchers available. (.toBe() is the matcher in our case)
+       - we want to compare the output of our test with a value we expect the function to return
+
+
+   - to run the test, insert this in the scripts in the package.json file:
+       "test": "jest"
+     then on the CLI, run:
+     `npm run test`
+
 
 why unit tests:
-    refactoring
-        - the process of resstructuring code, wile not changing its original functionality
-    unit tests help make sure that the code is not broken after refactoring
+   refactoring
+       - the process of restructuring code, wile not changing its original functionality
+   unit tests help make sure that the code is not broken after refactoring
+
 
 -->
+
 
 <!--
 Integration tests
 Simulate the browser/frontend
-    - this is also called "mocking"
-    - mock is a method/object that simulates the behavior of a real method/object in controlled ways
-    - we need to simulate sending an HTTP request to the backend
+   - this is also called "mocking"
+   - mock is a method/object that simulates the behavior of a real method/object in controlled ways
+   - we need to simulate sending an HTTP request to the backend
 
-    we shall be testing the /update-profile handler
-    send invalid payload > Error message
-    send correct payload > success message
 
-    - use supertest library. ref: https://www.npmjs.com/package/supertest#supertest
-    - 
+   we shall be testing the /update-profile handler
+   send invalid payload > Error message
+   send correct payload > success message
+
+
+   - use supertest library. ref: https://www.npmjs.com/package/supertest#supertest
+   
 -->
+
+
+
