@@ -49,7 +49,10 @@ Installation with brew package manager
 
 install mongodb on MacOS:
 ref: https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-os-x/#std-label-install-mdb-community-macos
+     https://www.mongodb.com/docs/drivers/node/current/fundamentals/connection/connect/#std-label-node-connect-to-mongodb
 
+install mongodb on UbuntuL
+ref: https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/#std-label-install-mdb-community-ubuntu
 
 start mongodb:
 `brew services start mongodb-community@7.0`
@@ -365,6 +368,24 @@ Artifacts and artifact repository
    - build artifacts are the files created by the build process
    artifact repository
    - storage for the artifacts
+
+Deploy Application on Linux server: 
+   - package application: `npm pack`
+   - copy file to remote server using RSA keys: ref: https://www.w3docs.com/snippets/linux/how-to-copy-a-file-from-a-remote-server-or-to-a-remote-server.html
+   - `sudo scp -i ~/Downloads/<XXXkey>.pem teamable-0.0.1.tgz ubuntu@<IPADDRESS>:/home/ubuntu`
+   - `tar -xvf teamable-0.0.1.tgz`
+   - `cd package`
+   - `npm install --omit=dev`
+   - `npm run start`
+   - access application: Configure the firewall to open port 3000 and then on the browser access the application on: http://<public-ip>:3000
+
+Run the Application in the background
+   - `npm run start &`
+   so now when you run CTRL + C on the CLI, the app will still be running in the background
+   - grep the process
+       `pgrep -l node` or `ps -ef | grep node`
+   - to stop the application you can kill the process:
+      `kill <process id` of node server.js>
 -->
 
 
