@@ -21,8 +21,10 @@
 
 `git remote add <git repo url>`
 
-- Delete a branch:
-    `git branch -D <branch name>`
+- Delete a branch locally:
+    `git branch -d <branch name>`
+- delete a branch remotely:
+    `git push origin --delete <remoteBranchName>`
 
 - create a new branch:
     `git branch -m <new branch> or git checkout -b <branch name>` the latter will create and move to the new branch.
@@ -41,8 +43,7 @@
 ### refs:
 - https://www.sesync.org/resources/faqs/how-do-i-change-git-default-branch-name-new-repositories-master-main
 - https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control
-- 
-
+- https://www.freecodecamp.org/news/how-to-delete-a-git-branch-both-locally-and-remotely/
 
 
 
