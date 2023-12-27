@@ -34,9 +34,6 @@ Application flow
    - we set or update the component's state with the user data
    - vue.js automatically updates the view accordingly
 
-
-
-
 =================================================================================================================================================
 Connecting Backend to Database
 
@@ -386,6 +383,112 @@ Run the Application in the background
        `pgrep -l node` or `ps -ef | grep node`
    - to stop the application you can kill the process:
       `kill <process id` of node server.js>
+
+Secure MongoDB access
+check if mongodb is running:
+   - `sudo systemctl status mongod`
+
+create db users:
+   - `mongosh`
+   - `use company_db`
+   - `show users`
+   - `use admin`
+   - `show users`
+   Create a user in the admin database to manage the db:
+   - `db.createUser({user: "admin", pwd: "adminpass", roles: [ {role: "userAdminAnyDatabase", db: "admin"} ]})`
+      - Role-based authorization
+         - mongoDB grants access to data and commands through role based authorization
+         - a role grants priviledges to perform tje specified actions on resource
+      - Built-in roles
+         - mongodb provides builtin roles that provide different levels of access commonly needed in a database
+         - you can additionally create user-defined roles
+   - `show users` should now show you the current user as admin
+   - Although you type the passowrd in plain text, passwords are not stored in plain text; they are encrypted.
+   Create user for company_db
+   - `use company_db`
+   -`db.createUser({user: "teamable_app_user", pwd: "mysecretpwd", roles: [ {role: "readWrite", db: "company_db"} ]})`
+      - admin: user with admin access to all DBs
+      - "myapp" user: should have restricted access only to the company_db database
+MongoDB config file
+   - By default the authentication is disabled. you can enable this in the mongoDB config file located at /etc/mongod.conf
+   - uncomment security and:
+      security:
+        authorization: "enabled"
+      - You can configure MongoDB instances at startup
+      - When you install MongoDB with a package manager, a default configuration file is provided as part of the installation
+   - restart mongodb so that the changes in the conf file can be loaded
+   - `sudo systemctl restart mongod`
+   - every service can be configured to change the behavior, so each service reads in a configuration file at startup
+   - to authenticate:
+      - `db.auth("admin", "adminpass")
+   - admin can get information on users in other databases(`show users`) but is not able to access other information, e.g. `show collections`
+
+Configure db access with credentials in backend app
+   - const url = 'mongodb://teamable_app_user:mysecretpwd@127.0.0.1:27017?authSource=company_db'
+   - const url = 'mongodb://username:password@db-hostname:db-port?authSource=db-name backend is trying to authenticate against'
+      - authsource: specify the database name in which you created the user. The db you create the user in, is the authentication databse for the user
+   - Now build a new artifact with the new changes and test it out
+   - remember to change the artifact version in package.json
+   - `npm run build`
+   - `npm pack`
+   - copy new artifact to the webserver
+   - if the old app is still running, stop it by killing the node server.js process. 
+      -You can identify the pid by `ps -ef | grep node` then kill <pid>
+   - `rm -rf <old package>`
+   - tar -xvf <new artifact>
+   - `cd package`
+   - `npm install --omit=dev`
+   - `npm run start &`
+
+Configure access to Env. variables in backend app
+   Update code in the backend:
+   - never hardcode any sensitive data in the application code!
+   - make credentials configurable for different environments
+   - the credentials should also be configurable from outside the code, hence we need to parameterize the credentials
+   - the values can be read from the environment in which the application is running
+   - environment variable: a variable whose value is set outside of the program
+
+   user-defined vs. system env vars
+     - we can define our own env. vars but there are also predefined env vars available on each operating system
+   Set an environment variable: syntax- `export varname=value`
+   - sets the variable and exports it to the global environment (available to all processes in the machine)
+   - During application initialization, the environment variables are loaded in and made available for the app
+      - Commands to set environment variables in MacOS and Linux:
+         - export DB_USER=teamable_app_user
+         - export DB_PASS=mysecretpwd
+            - to show the value: echo $DB_USER ...
+         - these env vars are only persistent for the current terminal session; as soon as you log out or close that window, they are no longer available
+
+   - to read those values inside the application code, node.js has an object called process.env
+   - process is a core module of node.js which contains env a property that holds all environment variables
+      - to persist the env vars:
+         - const DB_USER = process.env.DB_USER
+         - const DB_PASS = process.env.DB_PASS
+            - can also be destructured and written as: `const {DB_USER, DB_PASS, DEV} = process.env`
+         - const dbAddress = '127.0.0.1:27017'
+   String Interpolation
+      - the process of emebdding an expression (e.g. variable values) into part of a string
+      - this is done by template literals (strings wrapped in backticks) and ${expression} as a placeholder
+         - `mongdb://${DB_USER}:${DB_PASS}@${dbAddress}?authSource=company_db`
+   Print env
+      - Displays the values of environment variables in the current shell
+      - `printenv | grep DB_`
+
+   Adjust code to work on local database with is not using authentication by adding a third variable and using a conditional statement
+   if (DEV) {
+      const url = 'mongodb://127.0.0.1:27017'
+   } else {
+      const url = `mongodb://${DB_USER}:${DB_PASS}@127.0.0.1:27017?authSource=company_db`
+   }
+   or use a conditional ternary operator:
+   - Conditional Ternary Operator: An alternative if ... else statement
+   - condition ? valueIfTruev : valueIfFalse
+   - const url = DEV ? `mongodb://${dbAddress}` : `mongodb://${DB_USER}:${DB_PASS}@${dbAddress}?authSource=company_db`
+
+To export the dev environemnt in local:
+`export DEV=true` and then you can now run the app in local without any authentication failures from the changed url for the app running in the remote server
+
+
 -->
 
 

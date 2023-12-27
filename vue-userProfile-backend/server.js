@@ -6,9 +6,24 @@ const { MongoClient } = require('mongodb')
 // const {isInvalidEmail, isEmptyPayload} = require('./validator')
 const { isEmptyPayload, isInvalidEmail } = require('./validator')
 
+// console.log(process.env.DB_USER)
+// console.log(process.env.DB_PASS)
 
+// const DB_USER = process.env.DB_USER
+// const DB_PASS = process.env.DB_PASS
+
+// const {DB_USER, DB_PASS} = process.env (adjust to authenticate with local env as well)
+const {DB_USER, DB_PASS, DEV} = process.env
+const dbAddress = '127.0.0.1:27017'
 // Connection URL
-const url = 'mongodb://127.0.0.1:27017'
+// if (DEV) {
+//     const url = 'mongodb://127.0.0.1:27017'
+// } else {
+//     const url = `mongodb://${DB_USER}:${DB_PASS}@127.0.0.1:27017?authSource=company_db`
+// }
+const url = DEV ? `mongodb://${dbAddress}` : `mongodb://${DB_USER}:${DB_PASS}@${dbAddress}?authSource=company_db`
+
+// console.log("full url: ", url)
 const client = new MongoClient(url)
 
 // create db and collection
