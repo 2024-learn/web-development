@@ -6,3 +6,5 @@
 
 - check the version of Ubuntu compatible with Mongodb:
   - ref: https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/
+
+- install node via homebrew
